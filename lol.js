@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 const fs = require("fs");
+var Request = require("request");
 
 
 
@@ -116,15 +117,13 @@ bot.on("message", message => {
 
         if (message.content.startsWith(prefix + "meme"))
         {
-            fetch('https://meme-api.herokuapp.com/gimme')
-                .then(function (resp)
-                {
-                    return resp.json();
-                })
-                .then(function(data)
-                {
-                    message.channel.send(data);
-                });
+            Request.get("https://meme-api.herokuapp.com/gimme", (error, response, body) => {
+                if(error) {
+                    return console.dir(error);
+                }
+                let result = JSON.parse(body);
+                console.dir(result);
+            });
         }
 
         if (message.content.includes("eleven"))
