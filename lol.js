@@ -81,11 +81,22 @@ bot.on("message", message => {
 
         if (message.content.startsWith(prefix + "purge"))
         {
-            try
+            if (message.author.hasPermission("MANAGE_MESSAGES"))
             {
-                message.channel.bulkDelete(args[1]);
+                try
+                {
+                    if (parseInt(args[1]) > 100)
+                    {
+                        message.channel.bulkDelete(args[1]);
+                        message.react(`***Deleted ${args[1]} messages.***`).then(message.react("✅"));
+                    }
+                }
+                catch
+                {
+                    message.react("❌")
+                }
             }
-            catch
+            else
             {
                 message.react("❌")
             }
