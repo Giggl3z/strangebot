@@ -10,6 +10,12 @@ function randint(min, max) {
 
 let levelUp = 0;
 let totalPoints = 0;
+let prefix = ".s ";
+
+bot.on("ready", () => {
+    console.log("Ready");
+    bot.user.setActivity(prefix + "help");
+});
 
 
 // Welcomer
@@ -60,7 +66,6 @@ bot.on("message", message => {
     {
         let messageArray = message.content.split(" ");
         let cmd = messageArray[0];
-        let prefix = ".s ";
         let args = messageArray.slice(1);
 
         //console.log(levelUp);
@@ -177,12 +182,6 @@ bot.on("message", message => {
             message.channel.send(embed);
         }
     }
-});
-
-
-bot.on("ready", () => {
-    console.log("Ready");
-    bot.user.setActivity(prefix + "help");
 });
 
 bot.login(process.env.BOT_TOKEN);
