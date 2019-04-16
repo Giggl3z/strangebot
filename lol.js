@@ -88,7 +88,7 @@ bot.on("message", message => {
                 message.member.addRole(role);
                 message.react("✅")
             }
-            if (!role)
+            else
             {
                 guild.createRole({
                     name: 'Muted',
