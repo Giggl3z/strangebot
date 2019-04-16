@@ -153,7 +153,10 @@ bot.on("message", message => {
                 {
                     message.channel.send("❌ Subreddit not found")
                 }
-                message.channel.send(memes);
+                else
+                {
+                    message.channel.send(memes);
+                }
             });
         }
 
