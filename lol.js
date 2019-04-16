@@ -131,14 +131,21 @@ bot.on("message", msg => {
             {
                 
                 
-                var member = msg.mentions.members.first();
-                member.ban().then((member) => {
-                    msg.react("✅");
-                    //msg.channel.send(`✅ ***${member.user.username}#${member.user.discriminator} has been banned.***`);
-                }).catch(() => {
+                try
+                {
+                    var member = msg.mentions.members.first();
+                    member.ban().then((member) => {
+                        msg.react("✅");
+                        //msg.channel.send(`✅ ***${member.user.username}#${member.user.discriminator} has been banned.***`);
+                    }).catch(() => {
+                        msg.react("❌");
+                        // msg.channel.send("***ℹ️ Not enough permissions, maybe try giving me a higher role than the user you want to ban.***");
+                    });
+                }
+                catch
+                {
                     msg.react("❓");
-                    // msg.channel.send("***ℹ️ Not enough permissions, maybe try giving me a higher role than the user you want to ban.***");
-                });
+                }
                 
 
             }
