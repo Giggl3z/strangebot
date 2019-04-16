@@ -86,6 +86,7 @@ bot.on("message", message => {
             if (role)
             {
                 message.member.addRole(role);
+                message.react("✅")
             }
             if (!role)
             {
