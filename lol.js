@@ -154,7 +154,7 @@ bot.on("message", message => {
                     message.channel.send("❌ Subreddit not found")
                 }
                 
-                else if (!args[1])
+                else if (args[1] == null || args[1] == undefined)
                 {
                     message.channel.send("**Usage:** .s reddit \`subreddit\`")
                 }
