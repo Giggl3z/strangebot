@@ -134,6 +134,11 @@ bot.on("message", message => {
             });
         }
 
+        if (message.console.includes("stfu"))
+        {
+            message.channel.send("no u");
+        }
+
         if (message.content.includes("eleven"))
         {
             message.channel.send("ELEVEN? where is she, please someone tell me where she is!");
