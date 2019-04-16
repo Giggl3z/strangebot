@@ -1,5 +1,26 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
+const fs = require("fs");
+bot.commands = new Discord.Collection();
+
+fs.readdir("./commands/",(err, files) => {
+    if (err)
+    {
+        console.log(err);
+    }
+    let jsfile = files.filter(f => f.split(".").pop() === "js")
+    if (jsfile.length <= 0)
+    {
+        console.log("Couldn't find commands");
+        return;
+    }
+
+    jsfile.forEach((f, i) => {
+        let props = require(`./commands/${f}`);
+        console.log(`${f} loaded!`);
+        bot.commands.set(props.help.name, props);
+    })
+});
 
 function randint(min, max) {
     return Math.floor(min + Math.random()*(max + 1 - min));
@@ -60,6 +81,16 @@ bot.on("message", msg => {
 
     if (msg.author.id != bot.user.id)
     {
+        let messageArray = msg.content.split(" ");
+        let cmd = messageArray[0];
+        let args = messageArray.slice(1);
+
+        let commandFile = bot.commands.get(cmd.slice(prefix.length));
+        if (commandFile)
+        {
+            commandFile.run(bot, message, args);
+        }
+
         //console.log(levelUp);
         let strangePoint = randint(7, 13);
         levelUp += 1;
@@ -124,24 +155,6 @@ bot.on("message", msg => {
                 msg.react("❌");
                 //msg.channel.send("***❌ You do not have enough permissions to do that.***")
             }
-        }
-
-        module.exports.run = async (bot, message, args) => {
-            if (!message.member.hasPermission("MANAGE_MESSAGES"))
-            {
-                return message.reply("lol");
-            }
-            if (!args[0])
-            {
-                return message.channel.send("oof");
-            }
-            message.channel.bulkDelete(args[0]).then(() => {
-                message.channel.send(`Cleared ${args[0]} messages`).then(msg => msg.delete(5000));
-            });
-        }
-        
-        module.exports.help = {
-            name: "clear"
         }
 
 
