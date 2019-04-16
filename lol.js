@@ -16,9 +16,9 @@ bot.on("ready", () => {
 
 // Welcomer
 bot.on('guildMemberAdd', member => {
-    if (member.guild.id == 566017621372436490 || member.guild.id == 567486578663096362)
+    if (member.guild.id == 566017621372436490)
     {
-        let newMember = member.guild.channels.get('566387384925814785' || '567495439616573441');
+        let newMember = member.guild.channels.get('566387384925814785');
         const welcomeEmbed = new Discord.RichEmbed()
             .setColor(0xff0000)
             .setFooter(`${member.user.username}#${member.user.discriminator}`, member.user.avatarURL)
@@ -41,9 +41,9 @@ bot.on('guildMemberAdd', member => {
 
 // Leave notif
 bot.on('guildMemberRemove', member => {
-    if (member.guild.id == 566017621372436490 || member.guild.id == 567486578663096362)
+    if (member.guild.id == 566017621372436490)
     {
-        let newMember = member.guild.channels.get('567142423231201311' || '567495439616573441');
+        let newMember = member.guild.channels.get('567142423231201311');
         const welcomeEmbed = new Discord.RichEmbed()
             .setColor(0xff0000)
             .setAuthor("StrangeBot")
