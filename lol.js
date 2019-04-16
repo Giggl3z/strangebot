@@ -114,7 +114,7 @@ bot.on("message", message => {
             }
         }
 
-        if (message.content.startsWith(`${prefix} meme`))
+        if (message.content.startsWith(prefix + "meme"))
         {
             fetch('https://meme-api.herokuapp.com/gimme')
                 .then(function (resp)
