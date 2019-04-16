@@ -126,6 +126,25 @@ bot.on("message", msg => {
             }
         }
 
+        module.exports.run = async (bot, message, args) => {
+            if (!message.member.hasPermission("MANAGE_MESSAGES"))
+            {
+                return message.reply("lol");
+            }
+            if (!args[0])
+            {
+                return message.channel.send("oof");
+            }
+            message.channel.bulkDelete(args[0]).then(() => {
+                message.channel.send(`Cleared ${args[0]} messages`).then(msg => msg.delete(5000));
+            });
+        }
+        
+        module.exports.help = {
+            name: "clear"
+        }
+
+
         if (msg.content.startsWith(prefix + "ban"))
         {
             if (msg.member.hasPermission(["BAN_MEMBERS"]))
