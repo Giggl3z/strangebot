@@ -79,21 +79,6 @@ bot.on("message", message => {
             totalPoints += strangePoint;
         }
 
-        if (message.console.startsWith(prefix + "mute"))
-        {
-            var member = message.mentions.members.first();
-            var role = message.guild.roles.find(role => role.name === "Muted");
-            if (role)
-            {
-                message.member.addRole(role);
-                message.react("✅")
-            }
-            else
-            {
-                message.channel.send("❌ ***You must create a 'Muted' role before muting this person***")
-            }
-        }
-
         if (message.content.startsWith(prefix + "purge"))
         {
             if (message.member.hasPermission("MANAGE_MESSAGES"))
