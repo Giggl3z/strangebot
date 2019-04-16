@@ -121,7 +121,7 @@ bot.on("message", message => {
                     return response.json()
                 })
                 .then(data => {
-                    message.channel.send(data);
+                    console.log(data);
                 })
         }
 
