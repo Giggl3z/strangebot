@@ -3,7 +3,7 @@ const bot = new Discord.Client();
 const fs = require("fs");
 bot.commands = new Discord.Collection();
 
-fs.readdir("./commands/",(err, files) => {
+fs.readdir("./commands/", (err, files) => {
     if (err)
     {
         console.log(err);
@@ -19,7 +19,7 @@ fs.readdir("./commands/",(err, files) => {
         let props = require(`./commands/${f}`);
         console.log(`${f} loaded!`);
         bot.commands.set(props.help.name, props);
-    })
+    });
 });
 
 function randint(min, max) {
@@ -28,12 +28,7 @@ function randint(min, max) {
 
 let levelUp = 0;
 let totalPoints = 0;
-let prefix = ".s "
 
-bot.on("ready", () => {
-    console.log("Ready");
-    bot.user.setActivity(prefix + "help");
-});
 
 // Welcomer
 bot.on('guildMemberAdd', member => {
@@ -48,7 +43,7 @@ bot.on('guildMemberAdd', member => {
             .setImage('https://data.whicdn.com/images/306312379/large.png')
             .addField("StrangeBot", `Welcome,  <@${member.user.id}> to **${member.guild.name}**. Enjoy your stay.`)
     
-        let sendmsg = member.guild.channels.get('566387384925814785');
+        let sendmessage = member.guild.channels.get('566387384925814785');
         const embd = new Discord.RichEmbed()
             .setColor(0x00FF00)
             .setFooter(`${member.user.username}#${member.user.discriminator}`, member.user.avatarURL)
@@ -56,7 +51,7 @@ bot.on('guildMemberAdd', member => {
             .addField("Member Joined", `✅ Welcome,  <@${member.user.id}> to **${member.guild.name}**. Enjoy your stay.`)
     
         member.send(welcomeEmbed);
-        sendmsg.send(embd);
+        sendmessage.send(embd);
     }
 });
 
@@ -77,18 +72,19 @@ bot.on('guildMemberRemove', member => {
     }
 });
 
-bot.on("message", msg => {
+bot.on("message", message => {
 
-    if (msg.author.id != bot.user.id)
+    if (message.author.id != bot.user.id)
     {
-        let messageArray = msg.content.split(" ");
+        let messageArray = message.content.split(" ");
         let cmd = messageArray[0];
+        let prefix = ".s ";
         let args = messageArray.slice(1);
 
-        let commandFile = bot.commands.get(cmd.slice(prefix.length));
-        if (commandFile)
+        let commandfile = bot.commands.get(cmd.slice(prefix.length));
+        if (commandfile)
         {
-            commandFile.run(bot, message, args);
+            commandfile.run(bot, message, args);
         }
 
         //console.log(levelUp);
@@ -98,113 +94,119 @@ bot.on("message", msg => {
         if (levelUp == 20)
         {
             levelUp = 0;
-            msg.reply("you've been given " + strangePoint + " points, good work!");
+            message.reply("you've been given " + strangePoint + " points, good work!");
             totalPoints += strangePoint;
         }
 
-        if (msg.content.includes("eleven"))
+        if (message.content.includes("eleven"))
         {
-            msg.channel.send("ELEVEN? where is she, please someone tell me where she is!");
+            message.channel.send("ELEVEN? where is she, please someone tell me where she is!");
         }
 
-        if (msg.content.includes("lol"))
+        if (message.content.includes("lol"))
         {
-            msg.channel.send("What's so funny, I don't find it funny ¯\\_(ツ)_/¯")
+            message.channel.send("What's so funny, I don't find it funny ¯\\_(ツ)_/¯")
         }
 
-        else if (msg.content.includes("osint") || msg.content.includes("osintsec") || msg.content.includes("Osint") || msg.content.includes("Osintsec"))
+        else if (message.content.includes("osint") || message.content.includes("osintsec") || message.content.includes("Osint") || message.content.includes("Osintsec"))
         {
-            msg.channel.send(`<@564474717747150858> ${msg.author.username} is talking about you`);
+            message.channel.send(`<@564474717747150858> ${message.author.username} is talking about you`);
         }
 
-        else if (msg.content.includes("thanks"))
+        else if (message.content.includes("thanks"))
         {
-            msg.channel.send("no problem ;)");
+            message.channel.send("no problem ;)");
         }
 
-        if (msg.content == prefix + "ping")
+        if (message.content == prefix + "ping")
         {
-            msg.channel.send("Pong! " + Math.round(bot.ping) + "ms");
-            msg.react("✅");
+            message.channel.send("Pong! " + Math.round(bot.ping) + "ms");
+            message.react("✅");
           }
 
-        if (msg.content.startsWith(prefix + "kick"))
+        if (message.content.startsWith(prefix + "kick"))
         {
-            if (msg.member.hasPermission(["KICK_MEMBERS"]))
+            if (message.member.hasPermission(["KICK_MEMBERS"]))
             {
 
                 try
                 {
-                    var member = msg.mentions.members.first();
+                    var member = message.mentions.members.first();
                     member.kick().then((member) => {
-                        msg.react("✅");
-                        // msg.channel.send(`✅ ***${member.user.username}#${member.user.discriminator} has been kicked.***`);
+                        message.react("✅");
+                        // message.channel.send(`✅ ***${member.user.username}#${member.user.discriminator} has been kicked.***`);
                     }).catch(() => {
-                        msg.react("❌");
-                        // msg.channel.send("***ℹ️ Not enough permissions, maybe try giving me a higher role than the user you want to kick.***");
+                        message.react("❌");
+                        // message.channel.send("***ℹ️ Not enough permissions, maybe try giving me a higher role than the user you want to kick.***");
                     });
                 }
                 catch
                 {
-                    msg.react("❓");
+                    message.react("❓");
                 }
                 
             }
             else
             {
-                msg.react("❌");
-                //msg.channel.send("***❌ You do not have enough permissions to do that.***")
+                message.react("❌");
+                //message.channel.send("***❌ You do not have enough permissions to do that.***")
             }
         }
 
 
-        if (msg.content.startsWith(prefix + "ban"))
+        if (message.content.startsWith(prefix + "ban"))
         {
-            if (msg.member.hasPermission(["BAN_MEMBERS"]))
+            if (message.member.hasPermission(["BAN_MEMBERS"]))
             {
        
                 try
                 {
-                    var member = msg.mentions.members.first();
+                    var member = message.mentions.members.first();
                     member.ban().then((member) => {
-                        msg.react("✅");
-                        //msg.channel.send(`✅ ***${member.user.username}#${member.user.discriminator} has been banned.***`);
+                        message.react("✅");
+                        //message.channel.send(`✅ ***${member.user.username}#${member.user.discriminator} has been banned.***`);
                     }).catch(() => {
-                        msg.react("❌");
-                        // msg.channel.send("***ℹ️ Not enough permissions, maybe try giving me a higher role than the user you want to ban.***");
+                        message.react("❌");
+                        // message.channel.send("***ℹ️ Not enough permissions, maybe try giving me a higher role than the user you want to ban.***");
                     });
                 }
                 catch
                 {
-                    msg.react("❓");
+                    message.react("❓");
                 }
                 
             }
             else
             {
-                msg.react("❌");
-                //msg.channel.send("***❌ You do not have enough permissions to do that.***")
+                message.react("❌");
+                //message.channel.send("***❌ You do not have enough permissions to do that.***")
             }
         }
 
-        if (msg.content.includes(`<@${bot.user.id}>`))
+        if (message.content.includes(`<@${bot.user.id}>`))
         {
-            msg.channel.send(`<@${msg.author.id}>`)
+            message.channel.send(`<@${message.author.id}>`)
         }
 
-        if (msg == prefix + "points")
+        if (message == prefix + "points")
         {
-            msg.delete();
-            //msg.channel.send(`**Total Strange Points** for <@${msg.author.id}> is \`${totalPoints}\``);
+            message.delete();
+            //message.channel.send(`**Total Strange Points** for <@${message.author.id}> is \`${totalPoints}\``);
             const embed = new Discord.RichEmbed()
                 .setColor(0xff0000)
                 .setThumbnail("https://cdn.discordapp.com/attachments/564605033367339027/566516577176911882/unknown.png")
                 .setTitle(`StrangeBot`)
                 .addField("Strangepoints", totalPoints)
-                .setFooter(`${msg.author.username}#${msg.author.discriminator}`, msg.author.avatarURL);
-            msg.channel.send(embed);
+                .setFooter(`${message.author.username}#${message.author.discriminator}`, message.author.avatarURL);
+            message.channel.send(embed);
         }
     }
+});
+
+
+bot.on("ready", () => {
+    console.log("Ready");
+    bot.user.setActivity(prefix + "help");
 });
 
 bot.login(process.env.BOT_TOKEN);
