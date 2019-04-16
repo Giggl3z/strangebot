@@ -16,9 +16,9 @@ bot.on("ready", () => {
 
 // Welcomer
 bot.on('guildMemberAdd', member => {
-    if (member.guild.id == 566017621372436490)
+    if (member.guild.id == 566017621372436490 || member.guild.id == 567486578663096362)
     {
-        let newMember = member.guild.channels.get('566387384925814785');
+        let newMember = member.guild.channels.get('566387384925814785' || '567495439616573441');
         const welcomeEmbed = new Discord.RichEmbed()
             .setColor(0xff0000)
             .setFooter(`${member.user.username}#${member.user.discriminator}`, member.user.avatarURL)
@@ -41,9 +41,9 @@ bot.on('guildMemberAdd', member => {
 
 // Leave notif
 bot.on('guildMemberRemove', member => {
-    if (member.guild.id == 566017621372436490)
+    if (member.guild.id == 566017621372436490 || member.guild.id == 567486578663096362)
     {
-        let newMember = member.guild.channels.get('567142423231201311');
+        let newMember = member.guild.channels.get('567142423231201311' || '567495439616573441');
         const welcomeEmbed = new Discord.RichEmbed()
             .setColor(0xff0000)
             .setAuthor("StrangeBot")
@@ -78,11 +78,11 @@ bot.on("message", msg => {
 
         if (msg.content.includes("lol"))
         {
-            msg.channel.send("HAHA SO FUNNY. retard...")
+            msg.channel.send("What's so funny, I don't find it funny ¯\\_(ツ)_/¯")
         }
         else if (msg.content.includes("osint") || msg.content.includes("osintsec") || msg.content.includes("Osint") || msg.content.includes("Osintsec"))
         {
-            msg.channel.send(`<@564474717747150858> nigga look, ${msg.author.username} is talking about you`);
+            msg.channel.send(`<@564474717747150858> ${msg.author.username} is talking about you`);
         }
         else if (msg.content.includes("thanks"))
         {
