@@ -124,7 +124,8 @@ bot.on("message", message => {
                 let result = JSON.parse(body);
                 const memes = new Discord.RichEmbed()
                     .setTitle(result.title)
-                    .addField("lol", "as")
+                    .setURL(result.postLink)
+                    .setImage(result.url)
 
             
                 message.channel.send(memes);
