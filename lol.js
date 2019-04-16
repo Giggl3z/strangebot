@@ -134,6 +134,25 @@ bot.on("message", message => {
             });
         }
 
+        if (message.content.startsWith(prefix + "reddit"))
+        {
+            Request.get(`https://meme-api.herokuapp.com/gimme/${args[1]}`, (error, response, body) => {
+                if(error) {
+                    return message.channel.send(error);
+                }
+                let result = JSON.parse(body);
+                const memes = new Discord.RichEmbed()
+                    .setTitle(result.title)
+                    .setURL(result.postLink)
+                    .setImage(result.url)
+                    .setTimestamp()
+                    .setFooter(`r/${result.subreddit}`)
+
+            
+                message.channel.send(memes);
+            });
+        }
+
         if (message.content.includes("stfu"))
         {
             message.channel.send("no u");
