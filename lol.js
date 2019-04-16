@@ -14,7 +14,7 @@ let prefix = ".s ";
 
 bot.on("ready", () => {
     console.log("Ready");
-    bot.user.setActivity("eleven in the ass");
+    bot.user.setActivity(`Prefix: ${prefix}`);
 });
 
 
