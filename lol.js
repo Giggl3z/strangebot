@@ -20,17 +20,19 @@ bot.on("ready", () => {
 
 // Welcomer
 bot.on('guildMemberAdd', member => {
+    
+        
+    const welcomeEmbed = new Discord.RichEmbed()
+        .setColor(0xff0000)
+        .setFooter(`${member.user.username}#${member.user.discriminator}`, member.user.avatarURL)
+        .setThumbnail(member.user.avatarURL)
+        .setTimestamp()
+        .setImage('https://data.whicdn.com/images/306312379/large.png')
+        .addField("StrangeBot", `Welcome,  <@${member.user.id}> to **${member.guild.name}**. Enjoy your stay.`)
+    member.send(welcomeEmbed);
+
     if (member.guild.id == 566017621372436490)
     {
-        let newMember = member.guild.channels.get('566387384925814785');
-        const welcomeEmbed = new Discord.RichEmbed()
-            .setColor(0xff0000)
-            .setFooter(`${member.user.username}#${member.user.discriminator}`, member.user.avatarURL)
-            .setThumbnail(member.user.avatarURL)
-            .setTimestamp()
-            .setImage('https://data.whicdn.com/images/306312379/large.png')
-            .addField("StrangeBot", `Welcome,  <@${member.user.id}> to **${member.guild.name}**. Enjoy your stay.`)
-    
         let sendmessage = member.guild.channels.get('566387384925814785');
         const embd = new Discord.RichEmbed()
             .setColor(0x00FF00)
@@ -38,7 +40,7 @@ bot.on('guildMemberAdd', member => {
             .setTimestamp()
             .addField("Member Joined", `✅ Welcome,  <@${member.user.id}> to **${member.guild.name}**. Enjoy your stay.`)
     
-        member.send(welcomeEmbed);
+        
         sendmessage.send(embd);
     }
 });
