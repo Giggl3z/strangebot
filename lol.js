@@ -134,7 +134,7 @@ bot.on("message", message => {
             });
         }
 
-        if (message.console.includes("stfu"))
+        if (message.content.includes("stfu"))
         {
             message.channel.send("no u");
         }
