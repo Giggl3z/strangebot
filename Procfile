@@ -1,1 +1,1 @@
-worker: node lol.js
+worker node lol.js
