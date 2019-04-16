@@ -127,7 +127,7 @@ bot.on("message", message => {
                     .setURL(result.postLink)
                     .setImage(result.url)
                     .setTimestamp()
-                    .setFooter(`r/${result.subreddit} | Requested by: ${message.author}`)
+                    .setFooter(`r/${result.subreddit}`)
 
             
                 message.channel.send(memes);
