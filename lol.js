@@ -126,6 +126,7 @@ bot.on("message", message => {
                     .setTitle(result.title)
                     .setURL(result.postLink)
                     .setImage(result.url)
+                    .setFooter(`r/${result.subreddit}`)
 
             
                 message.channel.send(memes);
