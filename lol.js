@@ -81,7 +81,7 @@ bot.on("message", message => {
 
         if (message.content.startsWith(prefix + "purge"))
         {
-            if (message.author.hasPermission("MANAGE_MESSAGES"))
+            if (message.member.hasPermission("MANAGE_MESSAGES"))
             {
                 try
                 {
