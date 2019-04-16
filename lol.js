@@ -117,12 +117,14 @@ bot.on("message", message => {
         if (message.content.startsWith(`${prefix} meme`))
         {
             fetch('https://meme-api.herokuapp.com/gimme')
-                .then(response => {
-                    return response.json()
+                .then(function (resp)
+                {
+                    return resp.json();
                 })
-                .then(data => {
-                    console.log(data);
-                })
+                .then(function(data)
+                {
+                    message.channel.send(data);
+                });
         }
 
         if (message.content.includes("eleven"))
