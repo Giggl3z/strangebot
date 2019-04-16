@@ -14,7 +14,7 @@ let prefix = ".s ";
 
 bot.on("ready", () => {
     console.log("Ready");
-    bot.user.setActivity(prefix + "help");
+    bot.user.setActivity("lol");
 });
 
 
@@ -77,6 +77,11 @@ bot.on("message", message => {
             levelUp = 0;
             message.reply("you've been given " + strangePoint + " points, good work!");
             totalPoints += strangePoint;
+        }
+
+        if (message.content.startsWith(prefix + "say"))
+        {
+            message.channel.send(args[0]);
         }
 
         if (message.content.includes("eleven"))
