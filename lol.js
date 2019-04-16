@@ -81,7 +81,7 @@ bot.on("message", message => {
 
         if (message.content.startsWith(prefix + "say"))
         {
-            message.channel.send(args[0]);
+            message.channel.send(args[1]);
         }
 
         if (message.content.includes("eleven"))
