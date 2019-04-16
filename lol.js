@@ -136,6 +136,8 @@ bot.on("message", message => {
 
         if (message.content.startsWith(prefix + "reddit"))
         {
+            message.channel.send("Searching...");
+
             Request.get(`https://meme-api.herokuapp.com/gimme/${args[1]}`, (error, response, body) => {
                 if(error) {
                     return message.channel.send(error);
@@ -147,8 +149,10 @@ bot.on("message", message => {
                     .setImage(result.url)
                     .setTimestamp()
                     .setFooter(`r/${result.subreddit}`)
-
-            
+                if (!result.title)
+                {
+                    message.channel.send("❌ Subreddit not found")
+                }
                 message.channel.send(memes);
             });
         }
