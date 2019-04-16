@@ -90,14 +90,7 @@ bot.on("message", message => {
             }
             else
             {
-                guild.createRole({
-                    name: 'Muted',
-                    color: 'GRAY',
-                  })
-                    .then(role => console.log(`Created new role with name ${role.name} and color ${role.color}`))
-                    .catch(message.channel.send("❌ ***You must create a 'Muted' role before muting this person***"))
-
-                    message.member.addRole(role);
+                message.channel.send("❌ ***You must create a 'Muted' role before muting this person***")
             }
         }
 
