@@ -88,7 +88,7 @@ bot.on("message", message => {
                     if (args[1] < 100)
                     {
                         message.channel.bulkDelete(args[1]);
-                        message.react(`***Deleted ${args[1]} messages.***`).then(message.react("✅"));
+                        message.react(`***Deleted ${args[1]} messages.***`) //.then(message.react("✅"));
                     }
                     else
                     {
