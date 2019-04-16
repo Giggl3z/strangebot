@@ -114,6 +114,17 @@ bot.on("message", message => {
             }
         }
 
+        if (message.content.startsWith(`${prefix} meme`))
+        {
+            fetch('https://meme-api.herokuapp.com/gimme')
+                .then(response => {
+                    return response.json()
+                })
+                .then(data => {
+                    message.channel.send(data);
+                })
+        }
+
         if (message.content.includes("eleven"))
         {
             message.channel.send("ELEVEN? where is she, please someone tell me where she is!");
