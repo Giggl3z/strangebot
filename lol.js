@@ -100,14 +100,21 @@ bot.on("message", msg => {
             if (msg.member.hasPermission(["KICK_MEMBERS"]))
             {
 
-                var member = msg.mentions.members.first();
-                member.kick().then((member) => {
-                    msg.react("✅");
-                    // msg.channel.send(`✅ ***${member.user.username}#${member.user.discriminator} has been kicked.***`);
-                }).catch(() => {
+                try
+                {
+                    var member = msg.mentions.members.first();
+                    member.kick().then((member) => {
+                        msg.react("✅");
+                        // msg.channel.send(`✅ ***${member.user.username}#${member.user.discriminator} has been kicked.***`);
+                    }).catch(() => {
+                        msg.react("❌");
+                        // msg.channel.send("***ℹ️ Not enough permissions, maybe try giving me a higher role than the user you want to kick.***");
+                    });
+                }
+                catch
+                {
                     msg.react("❓");
-                    // msg.channel.send("***ℹ️ Not enough permissions, maybe try giving me a higher role than the user you want to kick.***");
-                });
+                }
                 
 
             }
