@@ -1,19 +1,25 @@
 const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
-    if (!message.member.hasPermission("MANAGE_MESSAGES"))
+    let rUser = message.guild.member(message.mentions.first() || message.guild.member.get(args[0]));
+    if (!rUser)
     {
-        return message.reply("oof");
+        return message.channel.send("cant");
+        let rreason = args.join(" ".slice(22));
+        let reportEmbed = new Discord.RichEmbed()
+            .addField("lol", "sex");
+
+        let reportschannel = message.guild.channels.find(`name`, "reports");
+
+        if (!reportschannel)
+        {
+            return message.channel.send("ass nigga")
+        }
+        message.delete().catch(O_o => {});
+        reportschannel.send("")
     }
-    if (!args[0])
-    {
-        return message.channel.send("oof");
-    }
-    message.channel.bulkDelete(args[0]).then(() => {
-        message.channel.send(`Cleared ${args[0]} messages.`).then(msg => msg.delete(5000));
-    });
 }
 
 module.exports.help = {
-    name: "purge"
+    name: "report"
 }
