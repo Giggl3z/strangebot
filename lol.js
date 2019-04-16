@@ -122,8 +122,13 @@ bot.on("message", message => {
                     return message.channel.send(error);
                 }
                 let result = JSON.parse(body);
-                message.channel.send(result);
             });
+            const memes = new Discord.RichEmbed()
+                .setTitle(result.title)
+                .addField("lol", "as")
+
+            
+                message.channel.send(memes);
         }
 
         if (message.content.includes("eleven"))
