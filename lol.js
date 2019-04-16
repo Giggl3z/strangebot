@@ -83,15 +83,15 @@ bot.on("message", message => {
         {
             if (message.member.hasPermission("MANAGE_MESSAGES"))
             {
-                message.delete();
                 try
                 {
                     if (args[1] < 100)
                     {
+                        message.delete();
                         message.channel.bulkDelete(args[1]);
                         message.channel.send(`***✅ Deleted ${args[1]} messages.***`)
                     }
-                    else if (args[1] > 100)
+                    else if (args[1] >= 100)
                     {
                         message.channel.bulkDelete(100);
                         message.channel.send(`***✅ Deleted 100 messages.***`)
