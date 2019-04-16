@@ -90,10 +90,14 @@ bot.on("message", message => {
                         message.channel.bulkDelete(args[1]);
                         message.channel.send(`***✅ Deleted ${args[1]} messages.***`)
                     }
-                    else
+                    else if (args[1] > 100)
                     {
                         message.channel.bulkDelete(100);
                         message.channel.send(`***✅ Deleted 100 messages.***`)
+                    }
+                    else
+                    {
+                        message.react("❓")
                     }
                 }
                 catch
