@@ -71,6 +71,11 @@ bot.on("message", msg => {
             totalPoints += strangePoint;
         }
 
+        if (msg.content.includes("eleven"))
+        {
+            msg.channel.send("ELEVEN? where is she, please someone tell me where she is!");
+        }
+
         if (msg.content.includes("lol"))
         {
             msg.channel.send("HAHA SO FUNNY. retard...")
