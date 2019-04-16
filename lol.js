@@ -122,7 +122,7 @@ bot.on("message", message => {
                     return console.dir(error);
                 }
                 let result = JSON.parse(body);
-                console.dir(result);
+                message.channel.send(result);
             });
         }
 
