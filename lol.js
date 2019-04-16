@@ -86,7 +86,7 @@ bot.on("message", message => {
                 try
                 {
                     message.channel.bulkDelete(args[1]);
-                    message.react(`***Deleted ${args[1]} messages.***`)
+                    //message.react(`***Deleted ${args[1]} messages.***`)
                 }
                 catch
                 {
