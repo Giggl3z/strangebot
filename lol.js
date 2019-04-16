@@ -119,7 +119,7 @@ bot.on("message", message => {
         {
             Request.get("https://meme-api.herokuapp.com/gimme", (error, response, body) => {
                 if(error) {
-                    return console.dir(error);
+                    return message.channel.send(error);
                 }
                 let result = JSON.parse(body);
                 message.channel.send(result);
