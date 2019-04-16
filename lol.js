@@ -117,7 +117,6 @@ bot.on("message", message => {
 
         if (message.content.startsWith(prefix + "meme"))
         {
-            message.react("✅");
             Request.get("https://meme-api.herokuapp.com/gimme", (error, response, body) => {
                 if(error) {
                     return message.channel.send(error);
