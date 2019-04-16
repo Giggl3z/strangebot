@@ -79,9 +79,16 @@ bot.on("message", message => {
             totalPoints += strangePoint;
         }
 
-        if (message.content.startsWith(prefix + "say"))
+        if (message.content.startsWith(prefix + "purge"))
         {
-            message.channel.send(args[1]);
+            try
+            {
+                message.channel.bulkDelete(args[1]);
+            }
+            catch
+            {
+                message.react("❌")
+            }
         }
 
         if (message.content.includes("eleven"))
