@@ -81,9 +81,9 @@ bot.on("message", message => {
 
         if (message.content.startsWith(prefix + "purge"))
         {
-            message.delete();
             if (message.member.hasPermission("MANAGE_MESSAGES"))
             {
+                message.delete();
                 try
                 {
                     if (args[1] < 100)
