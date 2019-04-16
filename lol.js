@@ -14,7 +14,7 @@ let prefix = ".s ";
 
 bot.on("ready", () => {
     console.log("Ready");
-    bot.user.setActivity("lol");
+    bot.user.setActivity("eleven in the ass");
 });
 
 
@@ -85,10 +85,14 @@ bot.on("message", message => {
             {
                 try
                 {
-                    if (parseInt(args[1]) > 100)
+                    if (parseInt(args[1]) < 100)
                     {
                         message.channel.bulkDelete(args[1]);
                         message.react(`***Deleted ${args[1]} messages.***`).then(message.react("✅"));
+                    }
+                    else
+                    {
+                        message.react("❌")
                     }
                 }
                 catch
