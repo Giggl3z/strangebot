@@ -165,7 +165,7 @@ bot.on("message", message => {
                 
                 else
                 {
-                    message.edit(memes);
+                    message.channel.send(memes);
                 }
             });
         }
