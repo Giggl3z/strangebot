@@ -139,14 +139,7 @@ bot.on("message", message => {
                     .setFooter(`r/${result.subreddit}`)
 
             
-                message.channel.send(memes).then(function (message) {
-                    message.react("🔄")
-                    client.on('messageReactionAdd', (reaction, user) => {
-                        if(reaction.emoji.name === "✅") {
-                            message.channel.send("hot");
-                        }
-                    });
-                });
+                message.channel.send(memes);
             });
         }
 
@@ -172,9 +165,7 @@ bot.on("message", message => {
                 
                 else
                 {
-                    message.channel.send(memes).then(function (message) {
-                        message.react("🔄")
-                    });
+                    message.edit(memes);
                 }
             });
         }
