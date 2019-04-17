@@ -171,29 +171,6 @@ bot.on("message", message => {
             });
         }
 
-        if (message.content.startsWith(prefix + "math"))
-        {
-            if (!args[0])
-            {
-                return message.channel.send("Please input a calculation");
-            }
-            let resp;
-
-            try
-            {
-                resp = math.eval(args.join(' '));
-            } catch (e) {
-                return message.channel.send("Sorry, please input a valid calculation.")
-            }
-
-            const mathEmbed = new Discord.RichEmbed()
-                .setTitle("Math Calculation")
-                .addField("Input", `\`\`\`js\n${args.join('')}\`\`\``)
-                .addField("Output", `\`\`\`js\n${resp}\`\`\``)
-            
-            message.channel.send(mathEmbed);
-        }
-
 
         if (message.content.includes("stfu"))
         {
