@@ -15,7 +15,7 @@ let prefix = ".";
 
 bot.on("ready", () => {
     console.log("Ready");
-    bot.user.setActivity(`refix: ${prefix}`);
+    bot.user.setActivity(`prefix: ${prefix}`);
 });
 
 
@@ -88,13 +88,13 @@ bot.on("message", message => {
             {
                 try
                 {
-                    if (args[1] < 100)
+                    if (args[0] < 100)
                     {
                         message.delete();
-                        message.channel.bulkDelete(args[1]);
-                        message.channel.send(`***✅ Deleted ${args[1]} messages.***`)
+                        message.channel.bulkDelete(args[0]);
+                        message.channel.send(`***✅ Deleted ${args[0]} messages.***`)
                     }
-                    else if (args[1] >= 100)
+                    else if (args[0] >= 100)
                     {
                         message.channel.bulkDelete(100);
                         message.channel.send(`***✅ Deleted 100 messages.***`)
@@ -138,7 +138,7 @@ bot.on("message", message => {
         {
             message.channel.send("Searching...");
 
-            Request.get(`https://meme-api.herokuapp.com/gimme/${args[1]}`, (error, response, body) => {
+            Request.get(`https://meme-api.herokuapp.com/gimme/${args[0]}`, (error, response, body) => {
                 if(error) {
                     return message.channel.send(error);
                 }
