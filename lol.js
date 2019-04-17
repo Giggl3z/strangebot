@@ -221,6 +221,22 @@ bot.on("message", message => {
             }
         }
 
+        if (message.content.startsWith(prefix + "link"))
+        {
+            message.delete();
+                try
+                {
+                    const linkEmbed = new Discord.RichEmbed()
+                        .setTitle(args[0])
+                        .setURL(args[1])
+                    message.channel.send(linkEmbed);
+                }
+                catch
+                {
+                    message.channel.send("**Usage:** .link <text> <link>")
+                }
+        }
+
 
         if (message.content.startsWith(prefix + "ban"))
         {
