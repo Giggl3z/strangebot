@@ -178,7 +178,7 @@ bot.on("message", message => {
 
         if (message.content.includes("lol"))
         {
-            message.channel.react("😂")
+            message.react("😂")
         }
 
         if (message.content.includes("thanks"))
