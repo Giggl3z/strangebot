@@ -139,9 +139,11 @@ bot.on("message", message => {
                     .setFooter(`r/${result.subreddit}`)
 
             
-                message.channel.send(memes).then(() => {
-                    message.react("😂");
-                })
+                message.channel.send(memes).then(function (message) {
+                    message.react("👍")
+                }).catch(function () {
+                    message.channel.send("lol")
+                });
             });
         }
 
