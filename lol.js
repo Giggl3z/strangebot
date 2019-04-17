@@ -65,7 +65,7 @@ bot.on('guildMemberRemove', member => {
 
 bot.on("message", message => {
 
-    if (message.author.id != bot.user.id)
+    if (message.author.id != bot.user.id && !message.author.bot)
     {
         let messageArray = message.content.split(" ");
         let cmd = messageArray[0];
@@ -75,7 +75,7 @@ bot.on("message", message => {
         let strangePoint = randint(7, 13);
         levelUp += 1;
 
-        if (levelUp == 20)
+        if (levelUp == 4) // messages until until it rewards strangepoints
         {
             levelUp = 0;
             message.reply("you've been given " + strangePoint + " points, good work!");
