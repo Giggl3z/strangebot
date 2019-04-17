@@ -171,17 +171,17 @@ bot.on("message", message => {
             message.channel.send("ELEVEN? where is she, please someone tell me where she is!");
         }
 
+        if (message.content.includes("sorry"))
+        {
+            message.channel.send("it's ok")
+        }
+
         if (message.content.includes("lol"))
         {
-            message.channel.send("What's so funny, I don't find it funny ¯\\_(ツ)_/¯")
+            message.channel.react("😂")
         }
 
-        else if (message.content.includes("osint") || message.content.includes("osintsec") || message.content.includes("Osint") || message.content.includes("Osintsec"))
-        {
-            message.channel.send(`<@564474717747150858> ${message.author.username} is talking about you`);
-        }
-
-        else if (message.content.includes("thanks"))
+        if (message.content.includes("thanks"))
         {
             message.channel.send("no problem ;)");
         }
