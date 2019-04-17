@@ -141,6 +141,11 @@ bot.on("message", message => {
             
                 message.channel.send(memes).then(function (message) {
                     message.react("🔄")
+                    client.on('messageReactionAdd', (reaction, user) => {
+                        if(reaction.emoji.name === "✅") {
+                            message.channel.send("hot");
+                        }
+                    });
                 });
             });
         }
