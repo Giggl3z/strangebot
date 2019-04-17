@@ -178,7 +178,7 @@ bot.on("message", message => {
 
         else if (message.content.includes("osint") || message.content.includes("osintsec") || message.content.includes("Osint") || message.content.includes("Osintsec"))
         {
-            message.channel.send(`<@564474717747150858> ${message.author.username} is talking about you`.toLowerCase);
+            message.channel.send(`<@564474717747150858> ${message.author.username} is talking about you`);
         }
 
         else if (message.content.includes("thanks"))
