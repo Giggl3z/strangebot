@@ -140,9 +140,7 @@ bot.on("message", message => {
 
             
                 message.channel.send(memes).then(function (message) {
-                    message.react("👍")
-                }).catch(function () {
-                    message.channel.send("lol")
+                    message.react("🔄")
                 });
             });
         }
@@ -169,7 +167,9 @@ bot.on("message", message => {
                 
                 else
                 {
-                    message.channel.send(memes);
+                    message.channel.send(memes).then(function (message) {
+                        message.react("🔄")
+                    });
                 }
             });
         }
