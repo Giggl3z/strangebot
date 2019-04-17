@@ -82,7 +82,7 @@ bot.on("message", message => {
             totalPoints += strangePoint;
         }
 
-        if (message.content.startsWith(prefix + "purge") || message.content.startsWith(prefix + "p"))
+        if (message.content.startsWith(prefix + "purge") || message.content == prefix + "p")
         {
             if (message.member.hasPermission("MANAGE_MESSAGES"))
             {
