@@ -11,11 +11,11 @@ function randint(min, max) {
 
 let levelUp = 0;
 let totalPoints = 0;
-let prefix = ".s ";
+let prefix = ".";
 
 bot.on("ready", () => {
     console.log("Ready");
-    bot.user.setActivity(`Prefix: ${prefix}`);
+    bot.user.setActivity(`refix: ${prefix}`);
 });
 
 
