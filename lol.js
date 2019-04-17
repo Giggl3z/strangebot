@@ -230,8 +230,13 @@ bot.on("message", message => {
                         .setTitle(args[0])
                         .setURL(args[1])
                     message.channel.send(linkEmbed).catch(error => {
-                        message.channel.send("error");
+                        message.channel.send("**Usage:** .link <text> <link>");
                     });
+
+                    if (!args[0])
+                    {
+                        message.channel.send("**Usage:** .link <text> <link>");
+                    }
                 }
                 catch
                 {
