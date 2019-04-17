@@ -134,7 +134,7 @@ bot.on("message", message => {
             });
         }
 
-        if (message.content.startsWith(prefix + "reddit"))
+        if (message.content.startsWith(prefix + "reddit") || message.content.startsWith(prefix + "r"))
         {
             message.channel.send("Searching...");
 
