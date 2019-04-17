@@ -231,7 +231,7 @@ bot.on("message", message => {
                         .setURL(args[1])
                     
 
-                    if (!args)
+                    if (!args[1])
                     {
                         message.channel.send("**Usage:** .link <text> <link>");
                     }
