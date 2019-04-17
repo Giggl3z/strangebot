@@ -235,6 +235,11 @@ bot.on("message", message => {
                     {
                         message.channel.send("**Usage:** .link <text> <link>");
                     }
+                    
+                    if (!args[1])
+                    {
+                        message.channel.send("**Usage:** .link <text> <link>");
+                    }
                     else
                     {
                         message.channel.send(linkEmbed).catch(error => {
