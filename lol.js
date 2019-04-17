@@ -82,6 +82,15 @@ bot.on("message", message => {
             totalPoints += strangePoint;
         }
 
+        if (message.content.includes("https://discord.gg/") || message.content.includes("http://discord.gg/") || message.content.includes("discord.gg/"))
+        {
+            if (!message.member.hasPermission("MANAGE_MESSAGES"))
+            {
+                message.delete();
+                message.reply("you aren't allowed to post invites.")
+            }
+        }
+
         if (message.content.startsWith(prefix + "purge"))
         {
             if (message.member.hasPermission("MANAGE_MESSAGES"))
