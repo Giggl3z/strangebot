@@ -229,7 +229,9 @@ bot.on("message", message => {
                     const linkEmbed = new Discord.RichEmbed()
                         .setTitle(args[0])
                         .setURL(args[1])
-                    message.channel.send(linkEmbed);
+                    message.channel.send(linkEmbed).catch(error => {
+                        message.channel.send("error");
+                    });
                 }
                 catch
                 {
