@@ -75,7 +75,7 @@ bot.on("message", message => {
         let strangePoint = randint(7, 13);
         levelUp += 1;
 
-        if (levelUp == 4) // messages until until it rewards strangepoints
+        if (levelUp == 40) // messages until until it rewards strangepoints
         {
             levelUp = 0;
             message.reply("you've been given " + strangePoint + " points, good work!");
@@ -168,32 +168,6 @@ bot.on("message", message => {
                     message.channel.send(memes);
                 }
             });
-        }
-
-        if (message.content.startsWith(prefix + "eval"))
-        {
-            const clean = text => {
-                if (typeof(text) === "string")
-                    return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
-                else
-                    return text;
-                }
-            if(message.author.id !== 564474717747150858) return;
-
-            try
-            {
-                const code = args.join(" ");
-                let evaled = eval(code);
-
-                if (typeof evaled !== "string")
-                {
-                    evaled = require("util").inspect(evaled);
-                }
-
-                message.channel.send(clean(evaled), {code:"xl"});
-            } catch (err) {
-                message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
-            }
         }
 
         if (message.content.includes("stfu"))
