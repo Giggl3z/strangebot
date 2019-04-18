@@ -3,6 +3,7 @@ const bot = new Discord.Client();
 const fs = require("fs");
 var Request = require("request");
 const math = require('mathjs')
+const ms = require("ms");
 
 
 
@@ -81,6 +82,59 @@ bot.on("message", message => {
             levelUp = 0;
             message.reply("you've been given " + strangePoint + " points, good work!");
             totalPoints += strangePoint;
+        }
+
+        if (message.content.startsWith(prefix + mute))
+        {
+            let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+
+            if (!tomute)
+            {
+                return message.channel.send("Couldn't find user");
+            }
+
+            if (tomute.hasPermission("MANAGE_MESSAGES"))
+            {
+                message.channel.send("User is mod/admin.");
+            }
+            
+            let muterole = message.guild.roles.find(`name`, "Muted");
+
+            if(!muterole)
+            {
+                try
+                {
+                    muterole = message.guild.createRole({
+                        name: "Muted",
+                        color: "#000000",
+                        permissions: []
+                    });
+                    message.guild.channels.forEach(async (channel, id) => {
+                        await channel.overwritePermissions(muterole, {
+                            SEND_MESSAGES: false,
+                            ADD_REACTIONS: false
+                        });
+                    });
+                }
+                catch
+                {
+                    message.channel.send("`Muted` role does not exist");
+                }
+            }
+            
+            let mutetime = args[1];
+
+            if (!mutetime)
+            {
+                message.channel.send("Please speficy a time.");
+            }
+            tomute.addRole(muterole.id);
+            message.channel.send(`<@${tomute.id}> has been muted for ${ms(mutetime)}`);
+
+            setTimeout(function(){
+                tomute.removeRole(muterole.id);
+                message.channel.send(`<@${tomute.id}> has been unmuted.`);
+            }, ms(mutetime));
         }
 
         if (message.content.includes("https://discord.gg/") || message.content.includes("http://discord.gg/") || message.content.includes("discord.gg/"))
