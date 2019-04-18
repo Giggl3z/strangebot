@@ -169,14 +169,69 @@ bot.on("message", message => {
 
                 else if(!result.title)
                 {
-                    message.channel.send("❌ Subreddit not found")
+                    message.channel.send("❌ Subreddit not found");
                 }
                 
                 else
                 {
-                    message.channel.send(memes)
+                    message.channel.send(memes);
                 }
             });
+        }
+
+        if (message.content.startsWith(prefix + "mute"))
+        {
+            let tomute = message.guild.member(message.mentions.users.first() || message.guild.member.get(args[0]));
+            
+            if (!tomute)
+            {
+                return message.reply("❓");
+            }
+
+            if (tomute.hasPermission("MANAGE_MESSAGES"))
+            {
+                return message.react("❌")
+            }
+
+            let muterole = message.guild.roles.find(`name`, "Muted");
+
+            if (!muterole)
+            {
+                try
+                {
+                    muterole = message.guild.createRole({
+                        name: "Muted",
+                        color: "#585858",
+                        permissions: []
+                    });
+                    
+                    message.guild.channel.forEach(async (channel, id) => {
+                        await channel.overwritePermissions(muterole, {
+                            SEND_MESSAGES: false,
+                            ADD_REACTIONS: false
+                        });
+                    });
+                }
+                catch (e)
+                {
+                    message.channel.send(e.stack);
+                }
+            }
+
+            let mutetime = args[1];
+
+            if(!mutetime)
+            {
+                return message.react("🕒")
+            }
+            tomute.addRole(muterole.id);
+            message.channel.send(`<@${tomute.id}> has been muted for ${ms(mutetime)}.`);
+
+            setTimeout(function(){
+                tomute.removeRole(muterole.id);
+
+                message.channel.send(`<@${tomute.id}> has been unmuted.`);
+            }, ms(mutetime));
         }
 
         if (message.content.startsWith(prefix + "calc"))
@@ -191,7 +246,7 @@ bot.on("message", message => {
             {
                 resp = math.eval(args.join(' '));
             } catch (e) {
-                return message.channel.send("Sorry, please input a valid calculation.")
+                return message.channel.send("Sorry, please input a valid calculation. Example: \`.calc2+4 \`");
             }
 
             const mathEmbed = new Discord.RichEmbed()
