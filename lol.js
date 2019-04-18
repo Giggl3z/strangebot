@@ -185,7 +185,7 @@ bot.on("message", message => {
             
             if (!tomute)
             {
-                return message.reply("❓");
+                return message.react("❓");
             }
 
             if (tomute.hasPermission("MANAGE_MESSAGES"))
@@ -218,20 +218,25 @@ bot.on("message", message => {
                 }
             }
 
-            let mutetime = args[1];
-
-            if(!mutetime)
-            {
-                return message.react("🕒")
-            }
             tomute.addRole(muterole.id);
-            message.channel.send(`<@${tomute.id}> has been muted for ${ms(mutetime)}.`);
+            message.channel.send(`<@${tomute.id}> has been muted.`);           
+        }
 
-            setTimeout(function(){
+        if (message.content.startsWith(prefix + "unmute"))
+        {
+            let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+
+            let muterole = message.guild.roles.find(`name`, "Muted");
+
+            try
+            {
                 tomute.removeRole(muterole.id);
-
-                message.channel.send(`<@${tomute.id}> has been unmuted.`);
-            }, ms(mutetime));
+                message.channel.send(`<@${tomute.id}> has been muted.`)
+            }
+            catch
+            {
+                message.channel.send("This person is already muted.")
+            }
         }
 
         if (message.content.startsWith(prefix + "calc"))
