@@ -97,55 +97,57 @@ bot.on("message", message => {
             {
                 message.channel.send("User is mod/admin.");
             }
-            
-            let muterole = message.guild.roles.find(`name`, "Muted");
 
-            if(!muterole)
+            else
             {
+                let muterole = message.guild.roles.find(`name`, "Muted");
+                if(!muterole)
+                {
+                    try
+                    {
+                        muterole = message.guild.createRole({
+                            name: "Muted",
+                            color: "#000000",
+                            permissions: []
+                        });
+                        message.guild.channels.forEach(async (channel, id) => {
+                            await channel.overwritePermissions(muterole, {
+                                SEND_MESSAGES: false,
+                                ADD_REACTIONS: false
+                            });
+                        });
+                    }
+                    catch
+                    {
+                        message.channel.send("`Muted` role does not exist");
+                    }
+                }
+                
                 try
                 {
-                    muterole = message.guild.createRole({
-                        name: "Muted",
-                        color: "#000000",
-                        permissions: []
-                    });
-                    message.guild.channels.forEach(async (channel, id) => {
-                        await channel.overwritePermissions(muterole, {
-                            SEND_MESSAGES: false,
-                            ADD_REACTIONS: false
-                        });
-                    });
+                    let mutetime = args[1];
+    
+                    if (!mutetime)
+                    {
+                        message.channel.send("Please speficy a time.");
+                    }
+        
+                    else if (!args[1])
+                    {
+                        message.channel.send("Please speficy a time.");
+                    }
+                    tomute.addRole(muterole.id);
+                    message.channel.send(`<@${tomute.id}> has been muted for ${ms(ms(mutetime))}`);
+        
+                    setTimeout(function(){
+                        tomute.removeRole(muterole.id);
+                        message.channel.send(`<@${tomute.id}> has been unmuted.`);
+                    }, ms(mutetime));
                 }
                 catch
                 {
-                    message.channel.send("`Muted` role does not exist");
-                }
-            }
-            
-            try
-            {
-                let mutetime = args[1];
-
-                if (!mutetime)
-                {
                     message.channel.send("Please speficy a time.");
                 }
-    
-                else if (!args[1])
-                {
-                    message.channel.send("Please speficy a time.");
-                }
-                tomute.addRole(muterole.id);
-                message.channel.send(`<@${tomute.id}> has been muted for ${ms(ms(mutetime))}`);
-    
-                setTimeout(function(){
-                    tomute.removeRole(muterole.id);
-                    message.channel.send(`<@${tomute.id}> has been unmuted.`);
-                }, ms(mutetime));
-            }
-            catch
-            {
-                message.channel.send("Please speficy a time.");
             }
         }
 
