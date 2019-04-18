@@ -86,83 +86,90 @@ bot.on("message", message => {
 
         if (message.content.startsWith(prefix + "mute"))
         {
-            let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-
-            if (!tomute)
+            if (message.member.hasPermission("MANAGE_MESSAGES"))
             {
-                return message.channel.send("❌ ***Specify an user***");
-            }
+                let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
 
-            if (tomute.hasPermission("MANAGE_MESSAGES"))
-            {
-                message.channel.send("User is mod/admin.");
-            }
-
-            else
-            {
-                let muterole = message.guild.roles.find(`name`, "Muted");
-                if(!muterole)
+                if (!tomute)
                 {
-                    try
-                    {
-                        muterole = message.guild.createRole({
-                            name: "Muted",
-                            color: "#000000",
-                            permissions: []
-                        });
-                        message.guild.channels.forEach(async (channel, id) => {
-                            await channel.overwritePermissions(muterole, {
-                                SEND_MESSAGES: false,
-                                ADD_REACTIONS: false
-                            });
-                        });
-                    }
-                    catch
-                    {
-                        message.channel.send("`Muted` role does not exist");
-                    }
+                    return message.channel.send("❌ ***Specify an user***");
                 }
-                
-                try
-                {
-                    let mutetime = args[1];
     
-                    if (!mutetime)
-                    {
-                        message.channel.send("Please speficy a time.");
-                    }
-                    
-                    else
+                if (tomute.hasPermission("MANAGE_MESSAGES"))
+                {
+                    message.channel.send("User is mod/admin.");
+                }
+    
+                else
+                {
+                    let muterole = message.guild.roles.find(`name`, "Muted");
+                    if(!muterole)
                     {
                         try
                         {
-                            tomute.send(`You've been muted in **${tomute.guild.name}** for **${ms(ms(mutetime))}**`);
+                            muterole = message.guild.createRole({
+                                name: "Muted",
+                                color: "#000000",
+                                permissions: []
+                            });
+                            message.guild.channels.forEach(async (channel, id) => {
+                                await channel.overwritePermissions(muterole, {
+                                    SEND_MESSAGES: false,
+                                    ADD_REACTIONS: false
+                                });
+                            });
                         }
                         catch
                         {
-                            return;
+                            message.channel.send("`Muted` role does not exist");
                         }
-                        tomute.addRole(muterole.id);
-                        message.channel.send(`✅ <@${tomute.id}> ***has been muted for ${ms(ms(mutetime))}.***`);
-            
-                        setTimeout(function(){
+                    }
+                    
+                    try
+                    {
+                        let mutetime = args[1];
+        
+                        if (!mutetime)
+                        {
+                            message.channel.send("Please speficy a time.");
+                        }
+                        
+                        else
+                        {
                             try
                             {
-                                tomute.send(`You've been unmuted in **${tomute.guild.name}**`);
+                                tomute.send(`You've been muted in **${tomute.guild.name}** for **${ms(ms(mutetime))}**`);
                             }
                             catch
                             {
                                 return;
                             }
-                            tomute.removeRole(muterole.id);
-                            message.channel.send(`✅ <@${tomute.id}> ***has been unmuted.***`);
-                        }, ms(mutetime));
+                            tomute.addRole(muterole.id);
+                            message.channel.send(`✅ <@${tomute.id}> ***has been muted for ${ms(ms(mutetime))}.***`);
+                
+                            setTimeout(function(){
+                                try
+                                {
+                                    tomute.send(`You've been unmuted in **${tomute.guild.name}**`);
+                                }
+                                catch
+                                {
+                                    return;
+                                }
+                                tomute.removeRole(muterole.id);
+                                message.channel.send(`✅ <@${tomute.id}> ***has been unmuted.***`);
+                            }, ms(mutetime));
+                        }
+                    }
+                    catch
+                    {
+                        message.channel.send("Please speficy a time.");
                     }
                 }
-                catch
-                {
-                    message.channel.send("Please speficy a time.");
-                }
+            }
+            else
+            {
+                message.react("❌");
             }
         }
 
