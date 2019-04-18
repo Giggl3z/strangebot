@@ -97,7 +97,7 @@ bot.on("message", message => {
     
                 if (tomute.hasPermission("MANAGE_MESSAGES"))
                 {
-                    message.channel.send("User is mod/admin.");
+                    message.channel.send("❌ ***User is mod/admin.***");
                 }
     
                 else
@@ -138,7 +138,7 @@ bot.on("message", message => {
                         {
                             try
                             {
-                                tomute.send(`You've been muted in **${tomute.guild.name}** for **${ms(ms(mutetime))}**`);
+                                tomute.send(`You've been muted in **${tomute.guild.name}** by **${message.author}** for **${ms(ms(mutetime))}**`);
                             }
                             catch
                             {
