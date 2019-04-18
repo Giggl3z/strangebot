@@ -90,7 +90,7 @@ bot.on("message", message => {
 
             if (!tomute)
             {
-                return message.channel.send("Couldn't find user");
+                return message.channel.send("❌ ***Specify an user***");
             }
 
             if (tomute.hasPermission("MANAGE_MESSAGES"))
@@ -134,10 +134,26 @@ bot.on("message", message => {
                     
                     else
                     {
+                        try
+                        {
+                            tomute.send(`You've been muted in **${tomute.guild.name}** for **${ms(ms(mutetime))}**`);
+                        }
+                        catch
+                        {
+                            return;
+                        }
                         tomute.addRole(muterole.id);
                         message.channel.send(`✅ <@${tomute.id}> ***has been muted for ${ms(ms(mutetime))}.***`);
             
                         setTimeout(function(){
+                            try
+                            {
+                                tomute.send(`You've been muted in **${tomute.guild.name}** for **${ms(ms(mutetime))}**`);
+                            }
+                            catch
+                            {
+                                return;
+                            }
                             tomute.removeRole(muterole.id);
                             message.channel.send(`✅ <@${tomute.id}> ***has been unmuted.**`);
                         }, ms(mutetime));
