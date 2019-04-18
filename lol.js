@@ -174,7 +174,9 @@ bot.on("message", message => {
                 
                 else
                 {
-                    message.channel.send(memes);
+                    message.channel.send(memes).then(() => {
+                        message.react("❌");
+                    });
                 }
             });
         }
