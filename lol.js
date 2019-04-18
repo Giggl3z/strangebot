@@ -181,7 +181,7 @@ bot.on("message", message => {
 
         if (message.content.startsWith(prefix + "mute"))
         {
-            let tomute = message.guild.member(message.mentions.users.first() || message.guild.member.get(args[0]));
+            let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
             
             if (!tomute)
             {
