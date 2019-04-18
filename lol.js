@@ -138,7 +138,7 @@ bot.on("message", message => {
                         {
                             try
                             {
-                                tomute.send(`You've been muted in **${tomute.guild.name}** by **${message.author}** for **${ms(ms(mutetime))}**`);
+                                tomute.send(`You've been muted in **${tomute.guild.name}** by **${message.author.username}#${message.author.discriminator}** for **${ms(ms(mutetime))}**`);
                             }
                             catch
                             {
