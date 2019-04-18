@@ -146,7 +146,7 @@ bot.on("message", message => {
 
         if (message.content.startsWith(prefix + "reddit") || message.content.startsWith(prefix + "r"))
         {
-            let blacklist = ["wince", "porn", "sex"];
+            let blacklist = ["wince", "porn", "sex", "nsfw", "nsfw2"];
 
             message.channel.send(`Searching: **r/${args[0]}**`);
 
@@ -177,78 +177,6 @@ bot.on("message", message => {
                     message.channel.send(memes);
                 }
             });
-        }
-
-        if (message.content.startsWith(prefix + "mute"))
-        {
-            if (message.member.hasPermission("MANAGE_MESSAGES"))
-            {
-                let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-            
-                if (!tomute)
-                {
-                    return message.react("❓");
-                }
-    
-                if (tomute.hasPermission("MANAGE_MESSAGES"))
-                {
-                    return message.react("❌")
-                }
-    
-                let muterole = message.guild.roles.find(`name`, "Muted");
-    
-                if (!muterole)
-                {
-                    try
-                    {
-                        muterole = message.guild.createRole({
-                            name: "Muted",
-                            color: "#585858",
-                            permissions: []
-                        });
-                        
-                        message.guild.channels.forEach(async (channel, id) => {
-                            await channel.overwritePermissions(muterole, {
-                                SEND_MESSAGES: false,
-                                ADD_REACTIONS: false
-                            });
-                        });
-                    }
-                    catch (e)
-                    {
-                        message.channel.send(e.stack);
-                    }
-                }
-    
-                tomute.addRole(muterole.id);
-                message.channel.send(`<@${tomute.id}> has been muted.`);  
-            }
-            else
-            {
-                message.react("❌");
-            }
-        }
-
-        if (message.content.startsWith(prefix + "unmute"))
-        {
-            if (message.member.hasPermission("MANAGE_MESSAGES"))
-            {
-                let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-
-                let muterole = message.guild.roles.find(`name`, "Muted");
-    
-                tomute.removeRole(muterole.id);
-                message.channel.send(`<@${tomute.id}> has been unmuted.`);
-
-                if (!tomute)
-                {
-                    message.react("❓")
-                }
-            }
-            else
-            {
-                message.react("❌");
-            }
         }
 
         if (message.content.startsWith(prefix + "calc"))
