@@ -84,7 +84,7 @@ bot.on("message", message => {
             totalPoints += strangePoint;
         }
 
-        if (message.content.startsWith(prefix + mute))
+        if (message.content.startsWith(prefix + "mute"))
         {
             let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
 
