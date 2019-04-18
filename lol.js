@@ -195,7 +195,7 @@ bot.on("message", message => {
                         message.channel.send(`***✅ Deleted ${args[0]} messages.***`)
                         setTimeout(function(){
                             message.delete();
-                        }, 5000);
+                        }, 500);
                     }
                     else if (args[0] >= 100)
                     {
