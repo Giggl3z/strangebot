@@ -148,14 +148,14 @@ bot.on("message", message => {
                         setTimeout(function(){
                             try
                             {
-                                tomute.send(`You've been muted in **${tomute.guild.name}** for **${ms(ms(mutetime))}**`);
+                                tomute.send(`You've been unmuted in **${tomute.guild.name}**`);
                             }
                             catch
                             {
                                 return;
                             }
                             tomute.removeRole(muterole.id);
-                            message.channel.send(`✅ <@${tomute.id}> ***has been unmuted.**`);
+                            message.channel.send(`✅ <@${tomute.id}> ***has been unmuted.***`);
                         }, ms(mutetime));
                     }
                 }
