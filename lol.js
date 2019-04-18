@@ -128,6 +128,11 @@ bot.on("message", message => {
             {
                 message.channel.send("Please speficy a time.");
             }
+
+            else if (!args[1])
+            {
+                message.channel.send("Please speficy a time.");
+            }
             tomute.addRole(muterole.id);
             message.channel.send(`<@${tomute.id}> has been muted for ${ms(ms(mutetime))}`);
 
