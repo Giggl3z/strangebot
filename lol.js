@@ -146,6 +146,8 @@ bot.on("message", message => {
 
         if (message.content.startsWith(prefix + "reddit") || message.content.startsWith(prefix + "r"))
         {
+            let blacklist = ["wince"];
+
             message.channel.send("Searching...");
 
             Request.get(`https://meme-api.herokuapp.com/gimme/${args[0]}`, (error, response, body) => {
@@ -159,6 +161,12 @@ bot.on("message", message => {
                     .setImage(result.url)
                     .setTimestamp()
                     .setFooter(`r/${result.subreddit}`)
+
+                if (args[0] in blacklist)
+                {
+                    message.channel.send("this url is blaclisted due to containing nsfw content");
+                }
+
                 if (!result.title)
                 {
                     message.channel.send("❌ Subreddit not found")
@@ -171,7 +179,7 @@ bot.on("message", message => {
             });
         }
 
-        if (message.content.startsWith(prefix + "math"))
+        if (message.content.startsWith(prefix + "calc"))
         {
             if (!args[0])
             {
@@ -187,7 +195,8 @@ bot.on("message", message => {
             }
 
             const mathEmbed = new Discord.RichEmbed()
-                .setTitle("Math Calculation")
+                .setTitle("Calculator")
+                .setThumbnail("https://images-na.ssl-images-amazon.com/images/I/21v2IL7O%2BVL.png")
                 .addField("Input", `\`\`\`js\n${args.join('')}\`\`\``)
                 .addField("Output", `\`\`\`js\n${resp}\`\`\``)
             
