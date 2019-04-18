@@ -148,7 +148,7 @@ bot.on("message", message => {
         {
             let blacklist = ["wince"];
 
-            message.channel.send("Searching...");
+            message.channel.send(`Searching: **r/${args[0]}**`);
 
             Request.get(`https://meme-api.herokuapp.com/gimme/${args[0]}`, (error, response, body) => {
                 if(error) {
@@ -164,10 +164,10 @@ bot.on("message", message => {
 
                 if (blacklist.includes(args[0]))
                 {
-                    message.channel.send("this url is blaclisted due to containing nsfw content");
+                    message.channel.send("❌ This subreddit is blacklisted. It contains NSFW content and it may not be appropiate for certain audiences.");
                 }
 
-                else if (!result.title)
+                if(!result.title)
                 {
                     message.channel.send("❌ Subreddit not found")
                 }
