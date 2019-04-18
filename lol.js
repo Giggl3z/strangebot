@@ -146,7 +146,7 @@ bot.on("message", message => {
 
         if (message.content.startsWith(prefix + "reddit") || message.content.startsWith(prefix + "r"))
         {
-            let blacklist = ["wince"];
+            let blacklist = ["wince", "porn", "sex"];
 
             message.channel.send(`Searching: **r/${args[0]}**`);
 
@@ -167,7 +167,7 @@ bot.on("message", message => {
                     message.channel.send("❌ This subreddit is blacklisted. It contains NSFW content and it may not be appropiate for certain audiences.");
                 }
 
-                if(!result.title)
+                else if(!result.title)
                 {
                     message.channel.send("❌ Subreddit not found")
                 }
