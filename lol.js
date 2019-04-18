@@ -131,18 +131,17 @@ bot.on("message", message => {
                     {
                         message.channel.send("Please speficy a time.");
                     }
-        
-                    else if (!args[1])
+                    
+                    else
                     {
-                        message.channel.send("Please speficy a time.");
+                        tomute.addRole(muterole.id);
+                        message.channel.send(`<@${tomute.id}> has been muted for ${ms(ms(mutetime))}`);
+            
+                        setTimeout(function(){
+                            tomute.removeRole(muterole.id);
+                            message.channel.send(`<@${tomute.id}> has been unmuted.`);
+                        }, ms(mutetime));
                     }
-                    tomute.addRole(muterole.id);
-                    message.channel.send(`<@${tomute.id}> has been muted for ${ms(ms(mutetime))}`);
-        
-                    setTimeout(function(){
-                        tomute.removeRole(muterole.id);
-                        message.channel.send(`<@${tomute.id}> has been unmuted.`);
-                    }, ms(mutetime));
                 }
                 catch
                 {
