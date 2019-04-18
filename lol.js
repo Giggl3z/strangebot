@@ -125,28 +125,28 @@ bot.on("message", message => {
             try
             {
                 let mutetime = args[1];
+
+                if (!mutetime)
+                {
+                    message.channel.send("Please speficy a time.");
+                }
+    
+                else if (!args[1])
+                {
+                    message.channel.send("Please speficy a time.");
+                }
+                tomute.addRole(muterole.id);
+                message.channel.send(`<@${tomute.id}> has been muted for ${ms(ms(mutetime))}`);
+    
+                setTimeout(function(){
+                    tomute.removeRole(muterole.id);
+                    message.channel.send(`<@${tomute.id}> has been unmuted.`);
+                }, ms(mutetime));
             }
             catch
             {
                 message.channel.send("Please speficy a time.");
             }
-
-            if (!mutetime)
-            {
-                message.channel.send("Please speficy a time.");
-            }
-
-            else if (!args[1])
-            {
-                message.channel.send("Please speficy a time.");
-            }
-            tomute.addRole(muterole.id);
-            message.channel.send(`<@${tomute.id}> has been muted for ${ms(ms(mutetime))}`);
-
-            setTimeout(function(){
-                tomute.removeRole(muterole.id);
-                message.channel.send(`<@${tomute.id}> has been unmuted.`);
-            }, ms(mutetime));
         }
 
         if (message.content.includes("https://discord.gg/") || message.content.includes("http://discord.gg/") || message.content.includes("discord.gg/"))
