@@ -122,7 +122,14 @@ bot.on("message", message => {
                 }
             }
             
-            let mutetime = args[1];
+            try
+            {
+                let mutetime = args[1];
+            }
+            catch
+            {
+                message.channel.send("Please speficy a time.");
+            }
 
             if (!mutetime)
             {
