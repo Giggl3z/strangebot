@@ -162,7 +162,7 @@ bot.on("message", message => {
                     .setTimestamp()
                     .setFooter(`r/${result.subreddit}`)
 
-                if (args[0] in blacklist)
+                if (blacklist.includes(args[0]))
                 {
                     message.channel.send("this url is blaclisted due to containing nsfw content");
                 }
