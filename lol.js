@@ -135,11 +135,11 @@ bot.on("message", message => {
                     else
                     {
                         tomute.addRole(muterole.id);
-                        message.channel.send(`<@${tomute.id}> has been muted for ${ms(ms(mutetime))}`);
+                        message.channel.send(`✅ <@${tomute.id}> ***has been muted for ${ms(ms(mutetime))}.***`);
             
                         setTimeout(function(){
                             tomute.removeRole(muterole.id);
-                            message.channel.send(`<@${tomute.id}> has been unmuted.`);
+                            message.channel.send(`✅ <@${tomute.id}> ***has been unmuted.**`);
                         }, ms(mutetime));
                     }
                 }
