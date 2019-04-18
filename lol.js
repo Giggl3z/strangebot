@@ -174,10 +174,7 @@ bot.on("message", message => {
                 
                 else
                 {
-                    message.channel.send(memes).then(function (message) {
-                        message.react("👎");
-                        message.react("👍");
-                    });
+                    message.channel.send(memes)
                 }
             });
         }
