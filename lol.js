@@ -205,7 +205,7 @@ bot.on("message", message => {
                         permissions: []
                     });
                     
-                    message.guild.channel.forEach(async (channel, id) => {
+                    message.guild.channels.forEach(async (channel, id) => {
                         await channel.overwritePermissions(muterole, {
                             SEND_MESSAGES: false,
                             ADD_REACTIONS: false
@@ -224,18 +224,18 @@ bot.on("message", message => {
 
         if (message.content.startsWith(prefix + "unmute"))
         {
-            let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-
-            let muterole = message.guild.roles.find(`name`, "Muted");
-
-            try
+            if (message.member.hasPermission("MANAGE_MESSAGES"))
             {
+                let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+
+                let muterole = message.guild.roles.find(`name`, "Muted");
+    
                 tomute.removeRole(muterole.id);
-                message.channel.send(`<@${tomute.id}> has been muted.`)
+                message.channel.send(`<@${tomute.id}> has been unmuted.`);
             }
-            catch
+            else
             {
-                message.channel.send("This person is already muted.")
+                message.react("❌");
             }
         }
 
