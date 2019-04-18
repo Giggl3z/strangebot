@@ -167,7 +167,7 @@ bot.on("message", message => {
                     message.channel.send("this url is blaclisted due to containing nsfw content");
                 }
 
-                if (!result.title)
+                else if (!result.title)
                 {
                     message.channel.send("❌ Subreddit not found")
                 }
