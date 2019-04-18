@@ -332,6 +332,7 @@ bot.on("message", message => {
                 try
                 {
                     var member = message.mentions.members.first();
+                    member.send("lol");
                     member.kick().then((member) => {
                         message.react("✅");
                         // message.channel.send(`✅ ***${member.user.username}#${member.user.discriminator} has been kicked.***`);
