@@ -118,12 +118,12 @@ bot.on("message", message => {
                                     ADD_REACTIONS: false
                                 });
                             });
-                            
+
                             tomute.addRole(muterole.id);
                         }
                         catch
                         {
-                            message.channel.send("`Muted` role does not exist");
+                            message.channel.send("`Muted` role does not exist.");
                         }
                     }
                     
@@ -140,26 +140,26 @@ bot.on("message", message => {
                         {
                             try
                             {
-                                tomute.send(`You've been muted in **${tomute.guild.name}** by **${message.author.username}#${message.author.discriminator}** for **${ms(ms(mutetime))}**`);
+                                tomute.send(`You were muted in **${tomute.guild.name}** by **${message.author.username}#${message.author.discriminator}** for **${ms(ms(mutetime))}**`);
                             }
                             catch
                             {
                                 return;
                             }
                             tomute.addRole(muterole.id);
-                            message.channel.send(`✅ <@${tomute.id}> ***has been muted for ${ms(ms(mutetime))}.***`);
+                            message.channel.send(`✅ ${tomute.username}#${tomute.discriminator} ***has been muted for ${ms(ms(mutetime))}.***`);
                 
                             setTimeout(function(){
                                 try
                                 {
-                                    tomute.send(`You've been unmuted in **${tomute.guild.name}**`);
+                                    tomute.send(`You've been unmuted from **${tomute.guild.name}**`);
                                 }
                                 catch
                                 {
                                     return;
                                 }
                                 tomute.removeRole(muterole.id);
-                                message.channel.send(`✅ <@${tomute.id}> ***has been unmuted.***`);
+                                message.channel.send(`✅ ${tomute.username}#${tomute.discriminator} ***has been unmuted.***`);
                             }, ms(mutetime));
                         }
                     }
