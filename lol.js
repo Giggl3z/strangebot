@@ -332,6 +332,26 @@ bot.on("message", message => {
             message.channel.send(msg);
         }
 
+        if (message.content.startsWith(prefix + "dm"))
+        {
+            if (message.author.id == 564474717747150858)
+            {
+                msg = args.join(" ");
+                message.send(msg);
+
+                if (!msg)
+                {
+                    message.channel.send("Input a message.");
+                }
+
+                if (!member)
+                {
+                    message.channel.send("Input an user.");
+                }
+            }
+        }
+
+
         if (message.content.startsWith(prefix + "kick"))
         {
             if (message.member.hasPermission(["KICK_MEMBERS"]))
