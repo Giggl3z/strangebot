@@ -323,8 +323,14 @@ bot.on("message", message => {
         if (message.content == prefix + "ping")
         {
             message.channel.send("Pong! " + Math.round(bot.ping) + "ms");
-            message.react("✅");
-          }
+        }
+
+        if (message.content.startsWith(prefix + "say"))
+        {
+            message.delete();
+            msg = args.join(" ");
+            message.channel.send(msg);
+        }
 
         if (message.content.startsWith(prefix + "kick"))
         {
@@ -391,19 +397,25 @@ bot.on("message", message => {
 
         if (message.content.startsWith(prefix + "ban"))
         {
-            if (message.member.hasPermission(["BAN_MEMBERS"]))
+            if (message.member.hasPermission(["KICK_MEMBERS"]))
             {
-       
+
                 try
                 {
                     var member = message.mentions.members.first();
-                    member.ban().then((member) => {
-                        message.react("✅");
-                        //message.channel.send(`✅ ***${member.user.username}#${member.user.discriminator} has been banned.***`);
-                    }).catch(() => {
-                        message.react("❌");
-                        // message.channel.send("***ℹ️ Not enough permissions, maybe try giving me a higher role than the user you want to ban.***");
-                    });
+
+                    if (member.hasPermission("MANAGE_MESSAGES"))
+                    {
+                        message.channel.send("❌ ***User is mod/admin.***");
+                    }
+                    else
+                    {
+                        member.ban().then((member) => {
+                            message.react("✅");
+                        }).catch(() => {
+                            message.react("❌");
+                        });
+                    }
                 }
                 catch
                 {
@@ -414,7 +426,7 @@ bot.on("message", message => {
             else
             {
                 message.react("❌");
-                //message.channel.send("***❌ You do not have enough permissions to do that.***")
+                
             }
         }
 
