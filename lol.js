@@ -337,7 +337,7 @@ bot.on("message", message => {
             if (message.author.id == 564474717747150858)
             {
                 msg = args.join(" ");
-                message.send(msg);
+                member.send(msg);
 
                 if (!msg)
                 {
