@@ -334,13 +334,19 @@ bot.on("message", message => {
                 try
                 {
                     var member = message.mentions.members.first();
-                    member.kick().then((member) => {
-                        message.react("✅");
-                        // message.channel.send(`✅ ***${member.user.username}#${member.user.discriminator} has been kicked.***`);
-                    }).catch(() => {
-                        message.react("❌");
-                        // message.channel.send("***ℹ️ Not enough permissions, maybe try giving me a higher role than the user you want to kick.***");
-                    });
+
+                    if (member.hasPermission("MANAGE_MESSAGES"))
+                    {
+                        message.channel.send("❌ ***User is mod/admin.***");
+                    }
+                    else
+                    {
+                        member.kick().then((member) => {
+                            message.react("✅");
+                        }).catch(() => {
+                            message.react("❌");
+                        });
+                    }
                 }
                 catch
                 {
@@ -351,7 +357,7 @@ bot.on("message", message => {
             else
             {
                 message.react("❌");
-                //message.channel.send("***❌ You do not have enough permissions to do that.***")
+                
             }
         }
 
