@@ -338,7 +338,7 @@ bot.on("message", message => {
             {
                 let member = message.mentions.members.first();
                 msg = args.join(" ");
-                member.send(msg);
+                member.send("test");
 
                 if (!msg)
                 {
