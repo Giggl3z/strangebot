@@ -84,6 +84,35 @@ bot.on("message", message => {
             totalPoints += strangePoint;
         }
 
+        const clean = text => {
+            if (typeof(text) === "string")
+              return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
+            else
+                return text;
+        }
+        if (message.content.startsWith(prefix + "eval"))
+        {
+            if(message.author.id == 564474717747150858)
+            {
+                try
+                {
+                    const code = args.join(" ");
+                    let evaled = eval(code);
+             
+                    if (typeof evaled !== "string")
+                    {
+                        evaled = require("util").inspect(evaled);
+                    }
+             
+                    message.channel.send(clean(evaled), {code:"xl"});
+                }
+                catch (err)
+                {
+                    message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
+                }
+            }
+        }
+
         if (message.content.startsWith(prefix + "mute"))
         {
             if (message.member.hasPermission("MANAGE_MESSAGES"))
@@ -330,26 +359,6 @@ bot.on("message", message => {
             message.delete();
             msg = args.join(" ");
             message.channel.send(msg);
-        }
-
-        if (message.content.startsWith(prefix + "dm"))
-        {
-            if (message.author.id == 564474717747150858)
-            {
-                let member = message.mentions.members.first();
-                msg = args.join(" ");
-                member.send(msg);
-
-                if (!msg)
-                {
-                    message.channel.send("Input a message.");
-                }
-
-                if (!member)
-                {
-                    message.channel.send("Input an user.");
-                }
-            }
         }
 
 
