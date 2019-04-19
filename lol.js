@@ -118,6 +118,8 @@ bot.on("message", message => {
                                     ADD_REACTIONS: false
                                 });
                             });
+                            
+                            tomute.addRole(muterole.id);
                         }
                         catch
                         {
@@ -281,7 +283,7 @@ bot.on("message", message => {
             {
                 resp = math.eval(args.join(' '));
             } catch (e) {
-                return message.channel.send("Sorry, please input a valid calculation. Example: \`.calc2+4 \`");
+                return message.channel.send("Sorry, please input a valid calculation. Example: \`.calc 2+4 \`");
             }
 
             const mathEmbed = new Discord.RichEmbed()
