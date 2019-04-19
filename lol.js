@@ -147,7 +147,7 @@ bot.on("message", message => {
                                 return;
                             }
                             tomute.addRole(muterole.id);
-                            message.channel.send(`✅ ${tomute.username}#${tomute.discriminator} ***has been muted for ${ms(ms(mutetime))}.***`);
+                            message.channel.send(`✅ <@${tomute.id}> ***has been muted for ${ms(ms(mutetime))}.***`);
                 
                             setTimeout(function(){
                                 try
@@ -159,7 +159,7 @@ bot.on("message", message => {
                                     return;
                                 }
                                 tomute.removeRole(muterole.id);
-                                message.channel.send(`✅ ${tomute.username}#${tomute.discriminator} ***has been unmuted.***`);
+                                message.channel.send(`✅ <@${tomute.id}> ***has been unmuted.***`);
                             }, ms(mutetime));
                         }
                     }
