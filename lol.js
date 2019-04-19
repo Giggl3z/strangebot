@@ -336,6 +336,7 @@ bot.on("message", message => {
         {
             if (message.author.id == 564474717747150858)
             {
+                let member = message.mentions.members.first();
                 msg = args.join(" ");
                 member.send(msg);
 
