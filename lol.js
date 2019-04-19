@@ -424,7 +424,6 @@ bot.on("message", message => {
                 }
         }
 
-
         if (message.content.startsWith(prefix + "ban"))
         {
             if (message.member.hasPermission(["KICK_MEMBERS"]))
