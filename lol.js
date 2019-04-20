@@ -80,7 +80,7 @@ bot.on("message", message => {
         }
 
         let pointAmt = Math.floor(Math.random() * 15) + 1;
-        let baseAmt = Math.floor(Math.random() * 60) + 1;
+        let baseAmt = Math.floor(Math.random() * 33) + 1;
 
         if (pointAmt === baseAmt)
         {
