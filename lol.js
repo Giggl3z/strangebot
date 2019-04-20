@@ -110,8 +110,7 @@ bot.on("message", message => {
             let uPoints = points[message.author.id].points;
 
             let coinEmbed = new Discord.RichEmbed()
-            .setAuthor(message.author.username)
-            .setURL(message.author.avatarURL)
+            .setAuthor(message.author.username, message.author.avatarURL)
             .setColor("#00FF00")
             .setTimestamp()
             .setThumbnail("https://www.fourpointsfcu.org/wp-content/uploads/2017/04/FourPoints-Icons-Savings-White.png")
@@ -314,14 +313,14 @@ bot.on("message", message => {
                         message.delete();
                         message.channel.bulkDelete(args[0]);
                         message.channel.send(`***✅ Deleted ${args[0]} messages.***`).then(msg => {
-                            msg.delete(5000);
+                            msg.delete(3000);
                         });
                     }
                     else if (args[0] >= 100)
                     {
                         message.channel.bulkDelete(100);
                         message.channel.send(`***✅ Deleted 100 messages.***`).then(msg => {
-                            msg.delete(5000);
+                            msg.delete(3000);
                         });
                     }
                     else
