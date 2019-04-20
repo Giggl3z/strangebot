@@ -144,7 +144,7 @@ bot.on("message", message => {
                         points: pPoints + 5
                     };
     
-                    message.channel.send(`✅ ***${message.author} has given ${pUser} 5 strangepoints.***`);
+                    message.channel.send(`✅ ***${pUser} has been given 5 strangepoints.***`);
     
                     fs.writeFile("./points.json", JSON.stringify(points), (err) => {
                         if (err)
@@ -168,7 +168,7 @@ bot.on("message", message => {
                         points: pPoints + parseInt(args[1])
                     };
     
-                    message.channel.send(`✅ ***${message.author} has given ${pUser} ${args[1]} strangepoints.***`);
+                    message.channel.send(`✅ ***${pUser} has been given ${args[1]} strangepoints.***`);
     
                     fs.writeFile("./points.json", JSON.stringify(points), (err) => {
                         if (err)
@@ -217,7 +217,7 @@ bot.on("message", message => {
 
                 if (!tomute)
                 {
-                    return message.channel.send("❌ ***Specify an user***");
+                    return message.react("❓")
                 }
     
                 if (tomute.hasPermission("MANAGE_MESSAGES"))
