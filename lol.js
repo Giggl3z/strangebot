@@ -99,9 +99,7 @@ bot.on("message", message => {
         .addField("Strangepoints Earned", `Hey, you just earned ${pointAmt} points. Keep it up!`)
         .setFooter(`${message.author.username}#${message.author.discriminator}`, message.author.avatarURL)
 
-        message.channel.send(pointEmbed).then(msg => {
-            msg.delete(5000);
-        });
+        message.channel.send(pointEmbed);
         }
 
         const clean = text => {
