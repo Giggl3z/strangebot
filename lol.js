@@ -11,8 +11,6 @@ function randint(min, max) {
     return Math.floor(min + Math.random()*(max + 1 - min));
   }
 
-let levelUp = 0;
-let totalPoints = 0;
 let prefix = ".";
 
 bot.on("ready", () => {
@@ -73,15 +71,36 @@ bot.on("message", message => {
         let cmd = messageArray[0];
         let args = messageArray.slice(1);
 
-        //console.log(levelUp);
-        let strangePoint = randint(7, 13);
-        levelUp += 1;
-
-        if (levelUp == 40) // messages until until it rewards strangepoints
+        if (!points[message.author.id])
         {
-            levelUp = 0;
-            message.reply("you've been given " + strangePoint + " points, good work!");
-            totalPoints += strangePoint;
+            points[message.author.id] = {
+                points: 0
+            };
+        }
+
+        let pointAmt = Math.floor(Math.random() * 15) + 1;
+        let baseAmt = Math.floor(Math.random() * 15) + 1;
+
+        if (pointAmt === baseAmt)
+        {
+            points[message.author.id] = {
+                points: points[message.author.id].points + pointAmt
+            };
+        fs.writeFile("./points.json", JSON.stringify(points), (err) => {
+            if (err)
+            {
+                console.log(err);
+            }
+        });
+
+        let pointEmbed = new Discord.RichEmbed()
+        .setAuthor(message.author.username)
+        .addField("Strangepoints Earned", `Hey, you just earned ${pointAmt} points. Keep it up!`)
+        .setFooter(`${message.author.username}#${message.author.discriminator}`, message.author.avatarURL)
+
+        messages.channel.send(pointEmbed).then(msg => {
+            msg.delete(5000);
+        });
         }
 
         const clean = text => {
@@ -462,19 +481,6 @@ bot.on("message", message => {
         if (message.content.includes(`<@${bot.user.id}>`))
         {
             message.channel.send(`<@${message.author.id}>`)
-        }
-
-        if (message == prefix + "points")
-        {
-            message.delete();
-            //message.channel.send(`**Total Strange Points** for <@${message.author.id}> is \`${totalPoints}\``);
-            const embed = new Discord.RichEmbed()
-                .setColor(0xff0000)
-                .setThumbnail("https://cdn.discordapp.com/attachments/564605033367339027/566516577176911882/unknown.png")
-                .setTitle(`StrangeBot`)
-                .addField("Strangepoints", totalPoints)
-                .setFooter(`${message.author.username}#${message.author.discriminator}`, message.author.avatarURL);
-            message.channel.send(embed);
         }
     }
 });
