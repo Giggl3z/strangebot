@@ -87,7 +87,7 @@ bot.on("message", message => {
             points[message.author.id] = {
                 points: points[message.author.id].points + pointAmt
             };
-        fs.writeFile("points.json", JSON.stringify(points), (err) => {
+        fs.writeFile("./points.json", JSON.stringify(points), (err) => {
             if (err)
             {
                 console.log(err);
@@ -161,7 +161,7 @@ bot.on("message", message => {
                             points: 0
                         };
                     }
-                    
+
                     let pPoints = points[pUser.id].points;
 
                     points[pUser.id] = {
@@ -170,7 +170,7 @@ bot.on("message", message => {
     
                     message.channel.send(`✅ ***${message.author} has given ${pUser} ${args[1]} strangepoints.***`);
     
-                    fs.writeFile("points.json", JSON.stringify(points), (err) => {
+                    fs.writeFile("./points.json", JSON.stringify(points), (err) => {
                         if (err)
                         {
                             console.log(err);
