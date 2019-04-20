@@ -130,20 +130,44 @@ bot.on("message", message => {
                     };
                 }
 
-                let pPoints = points[pUser.id].points;
+                if (!pUser)
+                {
+                    message.channel.send("❌ ***Specify an user***");
+                }
+                else if (!args[1])
+                {
+                    let pPoints = points[pUser.id].points;
 
-                points[pUser.id] = {
-                    points: pPoints + parseInt(args[1])
-                };
+                    points[pUser.id] = {
+                        points: pPoints + 5
+                    };
+    
+                    message.channel.send(`✅ ***${message.author} has given ${pUser} 5 strangepoints.***`);
+    
+                    fs.writeFile("points.json", JSON.stringify(points), (err) => {
+                        if (err)
+                        {
+                            console.log(err);
+                        }
+                    });
+                }
+                else
+                {
+                    let pPoints = points[pUser.id].points;
 
-                message.channel.send(`${message.author} has given ${pUser} ${args[1]} strangepoints.`);
-
-                fs.writeFile("points.json", JSON.stringify(points), (err) => {
-                    if (err)
-                    {
-                        console.log(err);
-                    }
-                });
+                    points[pUser.id] = {
+                        points: pPoints + parseInt(args[1])
+                    };
+    
+                    message.channel.send(`✅ ***${message.author} has given ${pUser} ${args[1]} strangepoints.***`);
+    
+                    fs.writeFile("points.json", JSON.stringify(points), (err) => {
+                        if (err)
+                        {
+                            console.log(err);
+                        }
+                    });
+                }
             }
         }
 
