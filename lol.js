@@ -125,19 +125,19 @@ bot.on("message", message => {
             {
                 let pUser = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
 
-                if (!points[pUser.id])
-                {
-                    points[pUser.id] = {
-                        points: 0
-                    };
-                }
-
                 if (!pUser)
                 {
                     message.channel.send("❌ ***Specify an user***");
                 }
                 else if (!args[1])
                 {
+                    if (!points[pUser.id])
+                    {
+                        points[pUser.id] = {
+                            points: 0
+                        };
+                    }
+
                     let pPoints = points[pUser.id].points;
 
                     points[pUser.id] = {
@@ -155,6 +155,13 @@ bot.on("message", message => {
                 }
                 else
                 {
+                    if (!points[pUser.id])
+                    {
+                        points[pUser.id] = {
+                            points: 0
+                        };
+                    }
+                    
                     let pPoints = points[pUser.id].points;
 
                     points[pUser.id] = {
