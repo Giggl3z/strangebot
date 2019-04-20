@@ -87,7 +87,7 @@ bot.on("message", message => {
             points[message.author.id] = {
                 points: points[message.author.id].points + pointAmt
             };
-        fs.writeFile("./points.json", JSON.stringify(points), (err) => {
+        fs.writeFile("points.json", JSON.stringify(points), (err) => {
             if (err)
             {
                 console.log(err);
@@ -115,6 +115,36 @@ bot.on("message", message => {
             .addField("Total Strangepoints", `You have ${uPoints} strangepoints in total.`);
 
             message.channel.send(coinEmbed)
+        }
+
+        if (message.content.startsWith(prefix + "give"))
+        {
+            if (message.author.id == 564474717747150858)
+            {
+                let pUser = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
+
+                if (!points[pUser.id])
+                {
+                    points[pUser.id] = {
+                        points: 0
+                    };
+                }
+
+                let pPoints = points[pUser.id].points;
+
+                points[pUser.id] = {
+                    points: pPoints + parseInt(args[1])
+                };
+
+                message.channel.send(`${message.author} has given ${pUser} ${args[1]} strangepoints.`);
+
+                fs.writeFile("points.json", JSON.stringify(points), (err) => {
+                    if (err)
+                    {
+                        console.log(err);
+                    }
+                });
+            }
         }
 
         const clean = text => {
