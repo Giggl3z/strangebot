@@ -94,7 +94,7 @@ bot.on("message", message => {
             }
         });
 
-        message.channel.send(`Hey <@${message.author.id}> you just earned ${pointAmt} strangepoints. Keep it up!`);
+        message.channel.send(`Hey <@${message.author.id}>, you just earned ${pointAmt} strangepoints. Keep it up!`);
     
         }
 
