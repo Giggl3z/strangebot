@@ -4,6 +4,7 @@ const fs = require("fs");
 var Request = require("request");
 const math = require('mathjs')
 const ms = require("ms");
+let points = require("./points.json")
 
 
 
