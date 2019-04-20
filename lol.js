@@ -146,7 +146,7 @@ bot.on("message", message => {
     
                     message.channel.send(`✅ ***${message.author} has given ${pUser} 5 strangepoints.***`);
     
-                    fs.writeFile("points.json", JSON.stringify(points), (err) => {
+                    fs.writeFile("./points.json", JSON.stringify(points), (err) => {
                         if (err)
                         {
                             console.log(err);
