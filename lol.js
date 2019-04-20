@@ -80,7 +80,7 @@ bot.on("message", message => {
         }
 
         let pointAmt = Math.floor(Math.random() * 15) + 1;
-        let baseAmt = Math.floor(Math.random() * 15) + 1;
+        let baseAmt = Math.floor(Math.random() * 60) + 1;
 
         if (pointAmt === baseAmt)
         {
@@ -94,12 +94,27 @@ bot.on("message", message => {
             }
         });
 
-        let pointEmbed = new Discord.RichEmbed()
-        .setAuthor(message.author.username)
-        .addField("Strangepoints Earned", `Hey, you just earned ${pointAmt} points. Keep it up!`)
-        .setFooter(`${message.author.username}#${message.author.discriminator}`, message.author.avatarURL)
+        message.channel.send(`Hey <@${message.author.id}> you just earned ${pointAmt} strangepoints. Keep it up!`);
+    
+        }
 
-        message.channel.send(pointEmbed);
+        if (message.content.startsWith(prefix + "points"))
+        {
+            if (!points[message.author.id])
+            {
+                points[message.author.id] = {
+                    points: 0
+                };
+            }
+
+            let uPoints = points[message.author.id].points;
+
+            let coinEmbed = new Discord.RichEmbed()
+            .setAuthor(message.author.username)
+            .setColor("#00FF00")
+            .addField("Total Strangepoints", `You have ${uPoints} strangepoints in total.`);
+
+            message.channel.send(coinEmbed)
         }
 
         const clean = text => {
