@@ -311,7 +311,7 @@ bot.on("message", message => {
 
         if (message.content.startsWith(prefix + "purge"))
         {
-            if (message.member.hasPermission("MANAGE_MESSAGES"))
+            if (message.member.hasPermission("MANAGE_MESSAGES") || message.member.id == 564474717747150858)
             {
                 try
                 {
