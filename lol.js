@@ -121,7 +121,7 @@ bot.on("message", message => {
 
         if (message.content.startsWith(prefix + "give"))
         {
-            if (message.author.id == 564474717747150858)
+            if (message.author.id == 603405113477955625)
             {
                 let pUser = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
 
@@ -188,7 +188,7 @@ bot.on("message", message => {
         }
         if (message.content.startsWith(prefix + "eval"))
         {
-            if(message.author.id == 564474717747150858)
+            if(message.author.id == 603405113477955625)
             {
                 try
                 {
