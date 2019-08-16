@@ -439,11 +439,6 @@ bot.on("message", message => {
             message.channel.send("it's ok")
         }
 
-        if (message.content.includes("lol"))
-        {
-            message.react("😂")
-        }
-
         if (message.content.includes("thanks"))
         {
             message.channel.send("no problem ;)");
