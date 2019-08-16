@@ -417,6 +417,7 @@ bot.on("message", message => {
                 {
                     const infoEmbed = new Discord.RichEmbed()
                         .setTitle(result.guild.name)
+                    message.channel.send(infoEmbed);
                 }
             });
         }
