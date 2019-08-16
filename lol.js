@@ -424,7 +424,7 @@ bot.on("message", message => {
                         .addField("Server ID:", result.guild.id)
                         .addField("Channel:", `#${result.channel.name}`)
                         .addField("Invite Link", `[**__Join this server__**](https://discord.gg/${result.code})`)
-                        .setFooter(`Requested by: ${message.author.username}`, message.author.avatarURL)
+                        .setFooter(`Requested by: ${message.author.username}#${message.author.discriminator}`, message.author.avatarURL)
                     message.channel.send(infoEmbed);
                 }
             });
