@@ -30,12 +30,12 @@ bot.on('guildMemberAdd', member => {
         .setThumbnail(member.user.avatarURL)
         .setTimestamp()
         .setImage('https://data.whicdn.com/images/306312379/large.png')
-        .addField("StrangeBot", `Welcome,  <@${member.user.id}> to **${member.guild.name}**. Enjoy your stay.`)
+        .addField("StrangeBot", `Welcome, <@${member.user.id}> to **${member.guild.name}**. Enjoy your stay.`)
     member.send(welcomeEmbed);
 
-    if (member.guild.id == 566017621372436490)
+    if (member.guild.id == 609880407718232064)
     {
-        let sendmessage = member.guild.channels.get('566387384925814785');
+        let sendmessage = member.guild.channels.get('609880407718232067');
         const embd = new Discord.RichEmbed()
             .setColor(0x00FF00)
             .setFooter(`${member.user.username}#${member.user.discriminator}`, member.user.avatarURL)
