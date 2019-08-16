@@ -402,7 +402,7 @@ bot.on("message", message => {
 
         if(message.content.startsWith(prefix + "info"))
         {
-            let invite = args[1];
+            let invite = args[0];
             Request.get(`https://discordapp.com/api/v6/invite/${invite}`, (error, response, body) => {
                 if(error)
                 {
