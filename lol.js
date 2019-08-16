@@ -400,6 +400,27 @@ bot.on("message", message => {
             });
         }
 
+        if(message.content.startsWith(prefix + "info"))
+        {
+            let invite = args[1];
+            Request.get(`https://discordapp.com/api/v6/invite/${invite}`, (error, response, body) => {
+                if(error)
+                {
+                    return message.channel.send(error);
+                }
+                let result = JSON.parse(body);
+                if(result.code == 10006)
+                {
+                    message.channel.send("Unknown Invite")
+                }
+                else
+                {
+                    const infoEmbed = new Discord.RichEmbed()
+                        .setTitle(result.guild.name)
+                }
+            });
+        }
+
         if (message.content.startsWith(prefix + "calc"))
         {
             if (!args[0])
