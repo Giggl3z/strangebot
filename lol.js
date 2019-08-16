@@ -417,6 +417,7 @@ bot.on("message", message => {
                 {
                     const infoEmbed = new Discord.RichEmbed()
                         .setTitle(result.guild.name)
+                        .setThumbnail(`https://cdn.discordapp.com/icons/${result.guild.id}/${result.guild.icon}.jpg`)
                     message.channel.send(infoEmbed);
                 }
             });
