@@ -418,6 +418,12 @@ bot.on("message", message => {
                     const infoEmbed = new Discord.RichEmbed()
                         .setTitle(result.guild.name)
                         .setThumbnail(`https://cdn.discordapp.com/icons/${result.guild.id}/${result.guild.icon}.jpg`)
+                        .addField("Invite Code:", result.code)
+                        .addField("Inviter:", `${result.inviter.username}#${result.inviter.discriminator}`)
+                        .setAuthor(`${result.inviter.username}#${result.inviter.discriminator}`, `https://cdn.discordapp.com/avatars/${result.inviter.id}/${result.inviter.avatar}`)
+                        .addField("Server ID:", result.guild.id)
+                        .addField("Channel:", `#${result.channel.name}`)
+                        .addField("Invite Link", `[**__Join this server__**](https://discord.gg/${result.code})`)
                     message.channel.send(infoEmbed);
                 }
             });
