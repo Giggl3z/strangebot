@@ -424,6 +424,8 @@ bot.on("message", message => {
             message.channel.send(mathEmbed);
         }
 
+        //responses
+
         if (message.content.includes("stfu"))
         {
             message.channel.send("no u");
