@@ -422,10 +422,33 @@ bot.on("message", message => {
                         .addField("Invite Code:", result.code)
                         .addField("Inviter:", `${result.inviter.username}#${result.inviter.discriminator}`)
                         .setAuthor(`${result.inviter.username}#${result.inviter.discriminator}`, `https://cdn.discordapp.com/avatars/${result.inviter.id}/${result.inviter.avatar}`)
+                        .addField("Inviter ID:", result.inviter.id)
                         .addField("Server ID:", result.guild.id)
                         .addField("Channel:", `#${result.channel.name}`)
                         .addField("Invite Link", `[**__Join this server__**](https://discord.gg/${result.code})`)
-                        .setFooter(`Requested by: ${message.author.username}#${message.author.discriminator}`, message.author.avatarURL)
+                        switch(result.guild.verification_level)
+                        {
+                            case 0:
+                                infoEmbed.addField("Verification Level:", "**None**: Unrestricted")
+                                break;
+                            case 1:
+                                infoEmbed.addField("Verification Level:", "**Low**: Must have a verified email on their Discord account.")
+                                break;
+                            case 2:
+                                infoEmbed.addField("Verification Level:", "**Medium**: Must be registered on Discord for longer than 5 minutes.")
+                                break;
+                            case 3:
+                                infoEmbed.addField("Verification Level:", "**(╯°□°）╯︵ ┻━┻**: Must be a member of this server for longer than 10 minutes.")
+                                break;
+                            case 4:
+                                infoEmbed.addField("Verification Level:", "*┻━┻彡 ヽ(ಠ益ಠ)ノ彡┻━┻**: Must have a verified phone on their Discord account.")
+                                break;
+
+                            default:
+                                infoEmbed.addField("Verification Level:", "**None**: Unrestricted")
+                        }
+                        infoEmbed.setFooter(`Requested by: ${message.author.username}#${message.author.discriminator}`, message.author.avatarURL)
+                        
                     message.channel.send(infoEmbed);
                 }
             });
