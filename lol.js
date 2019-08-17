@@ -314,7 +314,7 @@ bot.on("message", message => {
             let user = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]))
 
             const avEmbed = new Discord.RichEmbed()
-                .setTitle(`${user.user.username}#${user.user.discriminator}\'s Avatar`)
+                .setTitle(`[${user.user.username}#${user.user.discriminator}\'s Avatar](${user.user.avatarURL})`)
                 .setImage(user.user.avatarURL)
                 .setTimestamp()
                 .setFooter(`Requested by: ${message.author.username}#${message.author.discriminator}`, message.author.avatarURL)
