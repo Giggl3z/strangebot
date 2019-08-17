@@ -311,7 +311,7 @@ bot.on("message", message => {
 
         if (message.content.startsWith(prefix + "avatar"))
         {
-            if(!args)
+            if(args == undefined)
             {
                 const avEmbed = new Discord.RichEmbed()
                     .setTitle(`${message.author.username}#${message.author.discriminator}\'s avatar`)
