@@ -309,6 +309,16 @@ bot.on("message", message => {
             }
         }
 
+        if (message.content.startsWith(prefix + "avatar"))
+        {
+            let user = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]))
+
+            const avEmbed = new Discord.RichEmbed()
+                .setTitle(`${user.username}#${user.discriminator}\'s Avatar`)
+                .setTimestamp()
+                .setImage(user.avatarURL)
+        }
+
         if (message.content.startsWith(prefix + "purge"))
         {
             if (message.member.hasPermission("MANAGE_MESSAGES") || message.member.id == god)
