@@ -317,6 +317,7 @@ bot.on("message", message => {
                 .setTitle(`${user.username}#${user.discriminator}\'s Avatar`)
                 .setTimestamp()
                 .setImage(user.avatarURL)
+            message.channel.send(avEmbed);
         }
 
         if (message.content.startsWith(prefix + "purge"))
