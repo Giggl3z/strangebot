@@ -323,15 +323,22 @@ bot.on("message", message => {
             }
             else
             {
-                let user = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]))
+                try
+                {
+                    let user = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]))
 
-                const avEmbed = new Discord.RichEmbed()
-                    .setTitle(`${user.user.username}#${user.user.discriminator}\'s avatar`)
-                    .setURL(user.user.avatarURL)
-                    .setImage(user.user.avatarURL)
-                    .setTimestamp()
-                    .setFooter(`Requested by: ${message.author.username}#${message.author.discriminator}`, message.author.avatarURL)
-                message.channel.send(avEmbed);
+                    const avEmbed = new Discord.RichEmbed()
+                        .setTitle(`${user.user.username}#${user.user.discriminator}\'s avatar`)
+                        .setURL(user.user.avatarURL)
+                        .setImage(user.user.avatarURL)
+                        .setTimestamp()
+                        .setFooter(`Requested by: ${message.author.username}#${message.author.discriminator}`, message.author.avatarURL)
+                    message.channel.send(avEmbed);
+                }
+                catch
+                {
+                    message.channel.send("❌ Couldn't find user.")
+                }
             }
         }
 
