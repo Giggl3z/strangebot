@@ -392,6 +392,11 @@ bot.on("message", message => {
                 {
                     message.channel.send("❌ Subreddit not found");
                 }
+
+                else if(!args[0])
+                {
+                    message.channel.send("**Usage:** .reddit <subreddit>. Example: \`.reddit discordapp\`")
+                }
                 
                 else
                 {
@@ -411,7 +416,7 @@ bot.on("message", message => {
                 let result = JSON.parse(body);
                 if(result.code == 10006)
                 {
-                    message.channel.send("Unknown Invite")
+                    message.channel.send("Unknown/Invalid Invite")
                 }
                 else
                 {
