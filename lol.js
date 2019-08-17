@@ -430,7 +430,6 @@ bot.on("message", message => {
                         .addField("Inviter ID:", result.inviter.id)
                         .addField("Server ID:", result.guild.id)
                         .addField("Channel:", `#${result.channel.name}`)
-                        .addField("Invite Link", `[**__Join this server__**](https://discord.gg/${result.code})`)
                         switch(result.guild.verification_level)
                         {
                             case 0:
@@ -452,6 +451,7 @@ bot.on("message", message => {
                             default:
                                 infoEmbed.addField("Verification Level:", "**None**: Unrestricted")
                         }
+                        infoEmbed.addField("Invite Link", `[**__Join this server__**](https://discord.gg/${result.code})`)
                         infoEmbed.setFooter(`Requested by: ${message.author.username}#${message.author.discriminator}`, message.author.avatarURL)
                         
                     message.channel.send(infoEmbed);
