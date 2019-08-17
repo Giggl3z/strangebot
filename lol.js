@@ -314,9 +314,9 @@ bot.on("message", message => {
             let user = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]))
 
             const avEmbed = new Discord.RichEmbed()
-                .setTitle(`${user.username}#${user.discriminator}\'s Avatar`)
+                .setTitle(`${user}\'s Avatar`)
                 .setTimestamp()
-                .setImage(user.avatarURL)
+                .setImage(`https://cdn.discordapp.com/avatars/${user.user.id}/${user.user.avatar}`)
             message.channel.send(avEmbed);
         }
 
