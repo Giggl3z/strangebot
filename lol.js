@@ -6,19 +6,19 @@ const math = require('mathjs')
 const ms = require("ms");
 let points = require("./points.json")
 
-
-
 function randint(min, max) {
     return Math.floor(min + Math.random()*(max + 1 - min));
   }
 
 let prefix = ".";
 
+//Bot owner ID
+let god = 603405113477955625;
+
 bot.on("ready", () => {
     console.log("Ready");
     bot.user.setActivity(`prefix: ${prefix}`);
 });
-
 
 // Welcomer
 bot.on('guildMemberAdd', member => {
@@ -121,7 +121,7 @@ bot.on("message", message => {
 
         if (message.content.startsWith(prefix + "give"))
         {
-            if (message.author.id == 603405113477955625)
+            if (message.author.id == god)
             {
                 let pUser = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
 
@@ -188,7 +188,7 @@ bot.on("message", message => {
         }
         if (message.content.startsWith(prefix + "eval"))
         {
-            if(message.author.id == 603405113477955625)
+            if(message.author.id == god)
             {
                 try
                 {
@@ -211,7 +211,7 @@ bot.on("message", message => {
 
         if (message.content.startsWith(prefix + "mute"))
         {
-            if (message.member.hasPermission("MANAGE_MESSAGES") || message.member.id == 564474717747150858)
+            if (message.member.hasPermission("MANAGE_MESSAGES") || message.member.id == god)
             {
                 let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
 
@@ -302,7 +302,7 @@ bot.on("message", message => {
 
         if (message.content.includes("https://discord.gg/") || message.content.includes("http://discord.gg/") || message.content.includes("discord.gg/"))
         {
-            if (!message.member.hasPermission("MANAGE_MESSAGES"))
+            if (!message.member.hasPermission("MANAGE_MESSAGES") || message.member.id == god)
             {
                 message.delete();
                 message.reply("you aren't allowed to post invites.")
@@ -311,7 +311,7 @@ bot.on("message", message => {
 
         if (message.content.startsWith(prefix + "purge"))
         {
-            if (message.member.hasPermission("MANAGE_MESSAGES") || message.member.id == 564474717747150858)
+            if (message.member.hasPermission("MANAGE_MESSAGES") || message.member.id == god)
             {
                 try
                 {
@@ -367,7 +367,7 @@ bot.on("message", message => {
 
         if (message.content.startsWith(prefix + "reddit") || message.content.startsWith(prefix + "r"))
         {
-            let blacklist = ["wince", "porn", "sex", "nsfw", "nsfw2"];
+            let blacklist = ["wince", "porn", "sex", "nsfw", "nsfw2", "pornhub", "brazzers", "anal"];
 
             message.channel.send(`Searching: **r/${args[0]}**`);
 
@@ -431,7 +431,7 @@ bot.on("message", message => {
             });
         }
 
-        if (message.content.startsWith(prefix + "calc"))
+        if (message.content.startsWith(prefix + "math"))
         {
             if (!args[0])
             {
@@ -443,7 +443,7 @@ bot.on("message", message => {
             {
                 resp = math.eval(args.join(' '));
             } catch (e) {
-                return message.channel.send("Sorry, please input a valid calculation. Example: \`.calc 2+4 \`");
+                return message.channel.send("Sorry, please input a valid calculation. Example: \`.math 2+4 \`");
             }
 
             const mathEmbed = new Discord.RichEmbed()
@@ -492,7 +492,7 @@ bot.on("message", message => {
 
         if (message.content.startsWith(prefix + "kick"))
         {
-            if (message.member.hasPermission(["KICK_MEMBERS"]) || message.member.id == 564474717747150858)
+            if (message.member.hasPermission(["KICK_MEMBERS"]) || message.member.id == god)
             {
 
                 try
@@ -554,7 +554,7 @@ bot.on("message", message => {
 
         if (message.content.startsWith(prefix + "ban"))
         {
-            if (message.member.hasPermission(["KICK_MEMBERS"]) || message.member.id == 564474717747150858)
+            if (message.member.hasPermission(["KICK_MEMBERS"]) || message.member.id == god)
             {
 
                 try
