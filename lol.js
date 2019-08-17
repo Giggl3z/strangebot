@@ -314,9 +314,10 @@ bot.on("message", message => {
             let user = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]))
 
             const avEmbed = new Discord.RichEmbed()
-                .setTitle(`${user}\'s Avatar`)
-                .setTimestamp()
+                .setTitle(`${user.user.username}\'s Avatar`)
+                .attachFile(`https://cdn.discordapp.com/avatars/${user.user.id}/${user.user.avatar}`)
                 .setImage(`https://cdn.discordapp.com/avatars/${user.user.id}/${user.user.avatar}`)
+                .setTimestamp()
             message.channel.send(avEmbed);
         }
 
