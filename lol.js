@@ -311,15 +311,28 @@ bot.on("message", message => {
 
         if (message.content.startsWith(prefix + "avatar"))
         {
-            let user = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]))
+            if(!args)
+            {
+                const avEmbed = new Discord.RichEmbed()
+                    .setTitle(`${message.author.username}#${message.author.discriminator}\'s avatar`)
+                    .setURL(message.author.avatarURL)
+                    .setImage(message.author.avatarURL)
+                    .setTimestamp()
+                    .setFooter(`Requested by: ${message.author.username}#${message.author.discriminator}`, message.author.avatarURL)
+                message.channel.send(avEmbed);
+            }
+            else
+            {
+                let user = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]))
 
-            const avEmbed = new Discord.RichEmbed()
-                .setTitle(`${user.user.username}#${user.user.discriminator}\'s Avatar`)
-                .setURL(user.user.avatarURL)
-                .setImage(user.user.avatarURL)
-                .setTimestamp()
-                .setFooter(`Requested by: ${message.author.username}#${message.author.discriminator}`, message.author.avatarURL)
-            message.channel.send(avEmbed);
+                const avEmbed = new Discord.RichEmbed()
+                    .setTitle(`${user.user.username}#${user.user.discriminator}\'s avatar`)
+                    .setURL(user.user.avatarURL)
+                    .setImage(user.user.avatarURL)
+                    .setTimestamp()
+                    .setFooter(`Requested by: ${message.author.username}#${message.author.discriminator}`, message.author.avatarURL)
+                message.channel.send(avEmbed);
+            }
         }
 
         if (message.content.startsWith(prefix + "purge"))
