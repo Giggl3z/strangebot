@@ -416,7 +416,7 @@ bot.on("message", message => {
                 let result = JSON.parse(body);
                 if(result.code == 10006)
                 {
-                    message.channel.send("Unknown/Invalid Invite")
+                    message.channel.send("❌ Unknown/Invalid Invite")
                 }
                 else
                 {
