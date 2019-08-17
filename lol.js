@@ -393,7 +393,7 @@ bot.on("message", message => {
                     message.channel.send("❌ Subreddit not found");
                 }
 
-                else if(!args[0])
+                else if(args[0] == undefined)
                 {
                     message.channel.send("**Usage:** .reddit <subreddit>. Example: \`.reddit discordapp\`")
                 }
