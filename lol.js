@@ -430,7 +430,7 @@ bot.on("message", message => {
                         .addField("Inviter ID:", result.inviter.id)
                         .addField("Server ID:", result.guild.id)
                         .addField("Channel:", `#${result.channel.name}`)
-                        .addField("CHannel ID:", `${result.channel.id}`)
+                        .addField("Channel ID:", `${result.channel.id}`)
                         switch(result.guild.verification_level)
                         {
                             case 0:
