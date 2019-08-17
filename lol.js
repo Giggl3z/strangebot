@@ -315,9 +315,9 @@ bot.on("message", message => {
 
             const avEmbed = new Discord.RichEmbed()
                 .setTitle(`${user.user.username}#${user.user.discriminator}\'s Avatar`)
-                .attachFile(`https://cdn.discordapp.com/avatars/${user.user.id}/${user.user.avatar}.jpg`)
                 .setImage(user.user.avatarURL)
                 .setTimestamp()
+                .setFooter(`Requested by: ${message.author.username}#${message.author.discriminator}`, message.author.avatarURL)
             message.channel.send(avEmbed);
         }
 
