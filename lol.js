@@ -342,10 +342,20 @@ bot.on("message", message => {
             }
         }
 
-        //test
-        if (message.content.startsWith(prefix + "test"))
+        if (message.content.startsWith(prefix + "dm"))
         {
-            message.channel.send(typeof args);
+            let dmUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]))
+
+            try
+            {
+                let msg = args.join(" ");
+                dmUser.send(msg);
+                message.channel.send(`✅ Message succesfully sent to ${dmUser}`)
+            }
+            catch
+            {
+                message.channel.send("❌ User has DMs disabled.")
+            }
         }
 
         if (message.content.startsWith(prefix + "purge"))
