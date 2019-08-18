@@ -342,6 +342,13 @@ bot.on("message", message => {
             }
         }
 
+        //test
+        if (message.content.startsWith(prefix + "test"))
+        {
+            message.channel.send(args);
+            message.channel.send(args[0]);
+        }
+
         if (message.content.startsWith(prefix + "purge"))
         {
             if (message.member.hasPermission("MANAGE_MESSAGES") || message.member.id == god)
