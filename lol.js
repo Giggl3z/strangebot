@@ -345,8 +345,7 @@ bot.on("message", message => {
         //test
         if (message.content.startsWith(prefix + "test"))
         {
-            message.channel.send(args);
-            message.channel.send(args[0]);
+            message.channel.send(typeof args);
         }
 
         if (message.content.startsWith(prefix + "purge"))
