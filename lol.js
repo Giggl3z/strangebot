@@ -349,7 +349,7 @@ bot.on("message", message => {
             try
             {
                 let msg = args.join(" ");
-                msg = msg.replace(/dmUser/g, "")
+                msg = msg.replace(/args[0]/g, "")
                 dmUser.send(msg);
                 message.channel.send(`✅ Message succesfully sent to ${dmUser}`)
             }
