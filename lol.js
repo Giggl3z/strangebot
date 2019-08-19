@@ -346,16 +346,21 @@ bot.on("message", message => {
         {
             let dmUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]))
 
-            try
+            switch (message.author.id)
             {
-                let msg = args.join(" ");
-                msg = msg.replace(/args[0]/g, "")
-                dmUser.send(msg);
-                message.channel.send(`✅ Message succesfully sent to ${dmUser}`)
-            }
-            catch
-            {
-                message.channel.send("❌ User has DMs disabled.")
+                case god:
+                    try
+                    {
+                        let msg = args.join(" ");
+                        msg = msg.replace(/args[0]/g, "")
+                        dmUser.send(msg);
+                        message.channel.send(`✅ Message succesfully sent to ${dmUser}`)
+                    }
+                    catch
+                    {
+                        message.channel.send("❌ User has DMs disabled.")
+                    }
+                    break;
             }
         }
 
