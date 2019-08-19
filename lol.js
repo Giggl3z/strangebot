@@ -361,6 +361,8 @@ bot.on("message", message => {
                         message.channel.send("❌ User has DMs disabled.")
                     }
                     break;
+                default:
+                    message.author.send("nah bro")
             }
         }
 
