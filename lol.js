@@ -422,7 +422,7 @@ bot.on("message", message => {
 
         if (message.content.startsWith(prefix + "reddit") || message.content.startsWith(prefix + "r"))
         {
-            let blacklist = ["wince", "porn", "sex", "nsfw", "nsfw2", "pornhub", "brazzers", "anal"];
+            let blacklist = ["wince", "porn", "sex", "nsfw", "nsfw2", "pornhub", "brazzers", "anal", "pussy"];
 
             message.channel.send(`Searching: **r/${args[0]}**`);
 
